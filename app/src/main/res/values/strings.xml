@@ -1,4 +1,5 @@
 <resources>
+    // STRINGS FOR AMazeActivity
     <string name="app_name">AMazeByNoahSchulman</string>
     <string name="welcome">ESCAPE HELL\'S MAZE</string>
     <string name="revisit">REVISIT</string>
@@ -6,12 +7,19 @@
     <string name="seekBarString">SIZE: 0</string>
     <string name="builderSpinnerString">BUILDER</string>
     <string name="roomSwitch">ROOMS</string>
-
     <string-array name="builder">
         <item>Boruvka</item>
         <item>DFS</item>
         <item>Prim</item>
     </string-array>
+
+
+    // STRINGS FOR GeneratingActivity
+    <string name="constructing">SLAVES CONSTRUCTING MAZE...</string>
+    <string name="driver">SELECT DRIVER</string>
+    <string name="Manual">MANUAL</string>
+    <string name="Wallfollower">WALL FOLLOWER</string>
+    <string name="Wizard">WIZARD</string>
     <string-array name="driver">
         <item>Manual</item>
         <item>Wizard</item>
