@@ -5,16 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import edu.wm.cs301.amazebynoahschulman.R;
 
-public class AMazeActivity extends AppCompatActivity {
+public class AMazeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    SeekBar seekBar;
-    TextView seekBarProgress;
+    private SeekBar seekBar;
+    private TextView seekBarProgress;
+    private Spinner builderAlgoSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,24 @@ public class AMazeActivity extends AppCompatActivity {
             }
         });
 
+        // this is for builder algorithm spinner:
+        builderAlgoSpinner = findViewById(R.id.spinner);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.builder, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        builderAlgoSpinner.setAdapter(adapter);
+        builderAlgoSpinner.setOnItemSelectedListener(this);
+
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String choice = adapterView.getItemAtPosition(i).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }
