@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">AMazeByNoahSchulman</string>
+    <string name="welcome">ESCAPE HELL\'S MAZE</string>
+    <string name="goToLoadingTEST">GO</string>
+    <string-array name="builder">
+        <item>Boruvka</item>
+        <item>DFS</item>
+        <item>Prim</item>
+    </string-array>
+    <string-array name="driver">
+        <item>Manual</item>
+        <item>Wizard</item>
+        <item>SmartWizard</item>
+        <item>Wallfollower</item>
+    </string-array>
 </resources>
