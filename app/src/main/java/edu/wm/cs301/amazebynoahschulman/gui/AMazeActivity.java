@@ -13,7 +13,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import edu.wm.cs301.amazebynoahschulman.R;
 
@@ -37,6 +37,8 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
     private TextView seekBarProgress;
     private Spinner builderAlgoSpinner;
     private Switch roomsSwitch;
+
+    // here is stuff for implementing a bc
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
