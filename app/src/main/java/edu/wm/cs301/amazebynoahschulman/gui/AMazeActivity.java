@@ -8,18 +8,35 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import edu.wm.cs301.amazebynoahschulman.R;
 
 public class AMazeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    /**
+     * Field variable to store maze size
+     */
+    private int size;
+    /**
+     * Field variable to store whether maze has rooms
+     */
+    private boolean rooms;
+    /**
+     * Field variable to store maze builder algorithm
+     * FOR PROJECT 6 THIS IS AN INT
+     * IN PROJECT 7 IT WILL BE TYPE BUILDER
+     */
+    private int builderAlgo;
 
     private SeekBar seekBar;
     private TextView seekBarProgress;
     private Spinner builderAlgoSpinner;
+    private Switch roomsSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +48,9 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
         exploreButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
+                MazeInfo.rooms = rooms;
+                MazeInfo.size = size;
+                MazeInfo.builderAlgo = builderAlgo;
                 Intent intent = new Intent(getApplicationContext(), GeneratingActivity.class);
                 startActivity(intent);
             }
@@ -53,6 +73,7 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                size = progress;
                 seekBarProgress.setText("SIZE: "+ progress);
             }
 
@@ -75,11 +96,24 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
         builderAlgoSpinner.setAdapter(adapter);
         builderAlgoSpinner.setOnItemSelectedListener(this);
 
+        // this is for room switch:
+        roomsSwitch = (Switch) findViewById(R.id.switch1);
+        roomsSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                        rooms = true;
+                } else {
+                       rooms = false;
+                }
+            }
+        });
+
 
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        builderAlgo = i;
         String choice = adapterView.getItemAtPosition(i).toString();
     }
 

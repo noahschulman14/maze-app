@@ -117,6 +117,7 @@
         android:layout_marginEnd="39dp"
         android:layout_marginBottom="29dp"
         android:text="@string/roomSwitch"
+        android:showText="true"
         app:layout_constraintBottom_toTopOf="@+id/exploreButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/spinner" />
