@@ -31,4 +31,11 @@
     <string name="shaky">SHAKY</string>
     <string name="shortly">GAME STARTING SHORTLY</string>
 
+    // strings for PlayManuallyActivity
+    <string name="showMap">SHOW MAP</string>
+    <string name="showSolution">SHOW SOLUTION</string>
+    <string name="showVisibleWalls">SHOW VISIBLE WALLS</string>
+    <string name="mapSize">MAP SIZE</string>
+    <string name="shortcut">SHORTCUT</string>
+
 </resources>
