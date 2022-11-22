@@ -16,5 +16,9 @@ public class MazeInfo {
      */
     protected static int builderAlgo;
 
+    // field variable to store driver type
+    protected static int driver;
 
+    // field variable to store robotConfig
+    protected static int robotConfig;
 }

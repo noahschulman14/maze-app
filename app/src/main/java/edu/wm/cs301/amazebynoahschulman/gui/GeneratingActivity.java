@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -36,12 +37,12 @@ public class GeneratingActivity extends AppCompatActivity implements AdapterView
     private RadioGroup driverRadioGroup;
     private RadioButton driverRadioButton;
 
-    private Spinner robotConfigSpinner;
-    private TextView spinnerText;
 
     protected ProgressBar buildProgress;
 
     private backgroundThread thread = new backgroundThread();
+
+    private Button startButton;
 
 
     public void startThread() {
@@ -52,17 +53,61 @@ public class GeneratingActivity extends AppCompatActivity implements AdapterView
         thread.interrupt();
     }
 
+    private boolean ready = false;
+
+    private boolean manual = false;
+
+    private boolean auto = false;
+
+    private boolean robot = false;
+
+    private TextView reminder;
+
+    private TextView robotConfigText;
+
+    private RadioGroup robotConfigRadioGroup;
+
+    private RadioButton robotConfigRadioButton;
+
+    private TextView reminder2;
+
+    private TextView shortly;
 
     class backgroundThread extends Thread {
         @Override
         public void run() {
             for (int i = 0; i <= 100; i++) {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                     buildProgress.incrementProgressBy(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+            }
+            ready = true;
+            if (manual) {
+                Intent intent = new Intent(getApplicationContext(), PlayManuallyActivity.class);
+                startActivity(intent);
+            }
+            else if (auto && robot) {
+                Intent intent = new Intent(getApplicationContext(), PlayAnimationActivity.class);
+                startActivity(intent);
+            }
+            else if (auto) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        reminder2.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+            else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            reminder.setVisibility(View.VISIBLE);
+                        }
+                    });
             }
         }
     }
@@ -74,6 +119,13 @@ public class GeneratingActivity extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_generating);
 
         buildProgress = findViewById(R.id.progressBar1);
+        reminder = findViewById(R.id.textView5);
+
+        robotConfigText = findViewById(R.id.textView6);
+        robotConfigRadioGroup = findViewById(R.id.radioGroup2);
+
+        reminder2 = findViewById(R.id.textView7);
+        shortly = findViewById(R.id.textView8);
 
         startThread();
 
@@ -83,15 +135,7 @@ public class GeneratingActivity extends AppCompatActivity implements AdapterView
         // implementing driver radio group:
         driverRadioGroup = findViewById(R.id.radioGroup);
 
-        // this is for robot config spinner:
-        robotConfigSpinner = findViewById(R.id.robotConfigSpinner1);
-        spinnerText = findViewById(R.id.textView2);
 
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.robotConfigList, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        robotConfigSpinner.setAdapter(adapter);
-        robotConfigSpinner.setOnItemSelectedListener(this);
 
     }
 
@@ -100,12 +144,51 @@ public class GeneratingActivity extends AppCompatActivity implements AdapterView
         driver = driverRadioGroup.getCheckedRadioButtonId();
         driverRadioButton = findViewById(driver);
         if (driverRadioButton == findViewById(R.id.radio_wallfollower) || driverRadioButton == findViewById(R.id.radio_wizard)) {
-            robotConfigSpinner.setVisibility(View.VISIBLE);
-            spinnerText.setVisibility(View.VISIBLE);
+            robotConfigRadioGroup.setVisibility(View.VISIBLE);
+            robotConfigText.setVisibility(View.VISIBLE);
+            if (!robot) {
+                shortly.setVisibility(View.INVISIBLE);
+            }
+            manual = false;
+            auto = true;
+            if (robot) {
+                shortly.setVisibility(View.VISIBLE);
+            }
+            if (ready && robot) {
+                Intent intent = new Intent(getApplicationContext(), PlayAnimationActivity.class);
+                startActivity(intent);
+            }
+            else if (ready) {
+                reminder2.setVisibility(View.VISIBLE);
+            }
+
         }
         if (driverRadioButton == findViewById(R.id.radio_manual)) {
-            robotConfigSpinner.setVisibility(View.INVISIBLE);
-            spinnerText.setVisibility(View.INVISIBLE);
+            shortly.setVisibility(View.VISIBLE);
+            robotConfigRadioGroup.setVisibility(View.INVISIBLE);
+            robotConfigText.setVisibility(View.INVISIBLE);
+            manual = true;
+            auto = false;
+            if (ready) {
+                Intent intent = new Intent(getApplicationContext(), PlayManuallyActivity.class);
+                startActivity(intent);
+            }
+        }
+    }
+
+    public void checkButton2(View v) {
+
+        driver = robotConfigRadioGroup.getCheckedRadioButtonId();
+        robotConfigRadioButton = findViewById(driver);
+        if (robotConfigRadioButton == findViewById(R.id.radio_premium) || robotConfigRadioButton == findViewById(R.id.radio_mediocre)
+                || robotConfigRadioButton == findViewById(R.id.radio_soso) || robotConfigRadioButton == findViewById(R.id.radio_shaky)) {
+            robot = true;
+            shortly.setVisibility(View.VISIBLE);
+            if (ready && auto) {
+                Intent intent = new Intent(getApplicationContext(), PlayAnimationActivity.class);
+                startActivity(intent);
+            }
+
         }
     }
 
@@ -119,5 +202,11 @@ public class GeneratingActivity extends AppCompatActivity implements AdapterView
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        stopThread();
+        super.onBackPressed();
     }
 }
