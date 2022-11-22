@@ -3,17 +3,24 @@ package edu.wm.cs301.amazebynoahschulman.gui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import edu.wm.cs301.amazebynoahschulman.R;
 
@@ -38,12 +45,16 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
     private Spinner builderAlgoSpinner;
     private Switch roomsSwitch;
 
-    // here is stuff for implementing a bc
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_amaze);
+
+
+
+
+
 
         // this is for the exploreButton, moves it to GeneratingActivity when clicked
         final Button exploreButton = findViewById(R.id.exploreButton);
@@ -123,4 +134,5 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
 }

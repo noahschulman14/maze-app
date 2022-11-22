@@ -15,4 +15,6 @@ public class MazeInfo {
      * IN PROJECT 7 IT WILL BE TYPE BUILDER
      */
     protected static int builderAlgo;
+
+
 }

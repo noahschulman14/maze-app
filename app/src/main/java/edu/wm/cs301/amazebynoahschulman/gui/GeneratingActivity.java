@@ -1,22 +1,32 @@
 package edu.wm.cs301.amazebynoahschulman.gui;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import edu.wm.cs301.amazebynoahschulman.R;
 
 public class GeneratingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    private static final String TAG = "GeneratingActivity";
 
     // field variable to store which driver is being used
     private int driver;
@@ -29,12 +39,46 @@ public class GeneratingActivity extends AppCompatActivity implements AdapterView
     private Spinner robotConfigSpinner;
     private TextView spinnerText;
 
+    protected ProgressBar buildProgress;
 
-    @SuppressLint("MissingInflatedId")
+    private backgroundThread thread = new backgroundThread();
+
+
+    public void startThread() {
+        thread.start();
+    }
+
+    public void stopThread() {
+        thread.interrupt();
+    }
+
+
+    class backgroundThread extends Thread {
+        @Override
+        public void run() {
+            for (int i = 0; i <= 100; i++) {
+                try {
+                    Thread.sleep(100);
+                    buildProgress.incrementProgressBy(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generating);
+
+        buildProgress = findViewById(R.id.progressBar1);
+
+        startThread();
+
+
+
 
         // implementing driver radio group:
         driverRadioGroup = findViewById(R.id.radioGroup);
