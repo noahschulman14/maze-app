@@ -38,4 +38,10 @@
     <string name="mapSize">MAP SIZE</string>
     <string name="shortcut">SHORTCUT</string>
 
+    // strings for PlayAnimationActivity
+    <string name="remeiningEnergy">ENERGY</string>
+    <string name="pause">PAUSE</string>
+    <string name="start1">START</string>
+    <string name="animationSpeed">ANIMATION SPEED</string>
+
 </resources>

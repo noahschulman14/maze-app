@@ -92,6 +92,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), WinningActivity.class);
+                // also passing the pathLength to StateWinning
+                intent.putExtra("pathLength", pathLength);
                 startActivity(intent);
             }
         });

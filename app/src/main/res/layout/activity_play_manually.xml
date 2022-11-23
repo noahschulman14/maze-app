@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:text="@string/mapSize"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/showVisibleWallsSwitch"
         app:layout_constraintStart_toStartOf="@+id/showVisibleWallsSwitch"
         app:layout_constraintTop_toBottomOf="@+id/showVisibleWallsSwitch" />
