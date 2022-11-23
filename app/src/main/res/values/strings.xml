@@ -43,5 +43,10 @@
     <string name="pause">PAUSE</string>
     <string name="start1">START</string>
     <string name="animationSpeed">ANIMATION SPEED</string>
+    <string name="sensorStatus">SENSOR STATUS</string>
+    <string name="front">FRONT</string>
+    <string name="back">BACK</string>
+    <string name="left">LEFT</string>
+    <string name="right">RIGHT</string>
 
 </resources>

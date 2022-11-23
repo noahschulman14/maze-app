@@ -13,9 +13,10 @@
         android:id="@+id/showMapSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:text="@string/showMap"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="688dp"></Switch>
+        app:layout_constraintBottom_toTopOf="@+id/mapSizeSeekBar"
+        app:layout_constraintStart_toStartOf="@+id/textView2"></Switch>
 
     <SeekBar
         android:id="@+id/mapSizeSeekBar"
@@ -23,23 +24,23 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="128dp"
         android:max="100"
         android:progress="50"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="745dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/mapSizeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="24dp"
         android:text="@string/mapSize"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/mapSizeSeekBar"
-        tools:layout_editor_absoluteX="170dp" />
+        app:layout_constraintStart_toStartOf="@+id/showMapSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/showMapSwitch" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -47,50 +48,57 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="7dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="847dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="56dp"
         android:layout_height="18dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginBottom="51dp"
         android:text="@string/remeiningEnergy"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="822dp" />
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/pauseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:text="@string/pause"
         android:visibility="invisible"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/startButton"
+        app:layout_constraintStart_toStartOf="@+id/sensorStatusTextView"
         tools:visibility="invisible" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/start1"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintStart_toStartOf="@+id/pauseButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SeekBar
         android:id="@+id/seekBar2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="27dp"
         android:layout_marginEnd="24dp"
         android:max="100"
         android:progress="50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="790dp" />
+        app:layout_constraintTop_toBottomOf="@+id/mapSizeSeekBar" />
 
     <TextView
         android:id="@+id/textView2"
@@ -98,8 +106,122 @@
         android:layout_height="wrap_content"
         android:text="@string/animationSpeed"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="771dp" />
+        app:layout_constraintBottom_toTopOf="@+id/seekBar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/sensorStatusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:text="@string/sensorStatus"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/pauseButton" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="22dp"
+        android:text="@string/front"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/rightGreen"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/back"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/sensorStatusTextView"
+        app:layout_constraintTop_toBottomOf="@+id/sensorStatusTextView" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/left"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/leftGreen"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/leftGreen"
+        app:layout_constraintTop_toBottomOf="@+id/sensorStatusTextView" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/right"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/rightRed"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/rightGreen"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/backRed"
+        app:layout_constraintEnd_toStartOf="@+id/backRed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/leftGreen"
+        app:srcCompat="@drawable/green" />
+
+    <ImageView
+        android:id="@+id/backRed"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="79dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/leftGreen"
+        app:layout_constraintEnd_toStartOf="@+id/leftGreen"
+        app:layout_constraintStart_toEndOf="@+id/rightGreen"
+        app:layout_constraintTop_toTopOf="@+id/leftGreen"
+        app:srcCompat="@drawable/red" />
+
+    <ImageView
+        android:id="@+id/leftGreen"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="44dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rightRed"
+        app:layout_constraintEnd_toStartOf="@+id/rightRed"
+        app:layout_constraintStart_toEndOf="@+id/backRed"
+        app:layout_constraintTop_toTopOf="@+id/rightRed"
+        app:srcCompat="@drawable/green" />
+
+    <ImageView
+        android:id="@+id/rightRed"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/leftGreen"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:srcCompat="@drawable/red" />
+
+    <edu.wm.cs301.amazebynoahschulman.gui.MazePanelPlayAnimation
+        android:id="@+id/mazePanel2"
+        android:layout_width="0dp"
+        android:layout_height="330dp"
+        android:layout_marginTop="126dp"
+        android:layout_marginBottom="126dp"
+        app:layout_constraintBottom_toBottomOf="@+id/showMapSwitch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rightGreen"
+        app:layout_constraintTop_toTopOf="@+id/rightRed"></edu.wm.cs301.amazebynoahschulman.gui.MazePanelPlayAnimation>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
