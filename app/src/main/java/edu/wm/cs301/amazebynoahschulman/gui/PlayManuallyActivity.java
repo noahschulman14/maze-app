@@ -2,6 +2,7 @@ package edu.wm.cs301.amazebynoahschulman.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,9 @@ public class PlayManuallyActivity extends AppCompatActivity {
     private ImageButton leftButton;
     // right button
     private ImageButton rightButton;
+
+    // shortcut button
+    private Button shortCutButton;
 
     // show map switch
     private Switch showMapSwitch;
@@ -82,6 +86,16 @@ public class PlayManuallyActivity extends AppCompatActivity {
             }
         });
 
+        // THIS IS FOR SHORTCUT BUTTON, switches to State Winning
+        shortCutButton = findViewById(R.id.shortCutButton);
+        shortCutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), WinningActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // this is for SHOW MAP SWITCH
         // in p7 will show map
         showMapSwitch = findViewById(R.id.showMapSwitch);
@@ -129,5 +143,12 @@ public class PlayManuallyActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    // back button functionality, moves to StateTitle
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
+        startActivity(intent);
     }
 }
