@@ -25,14 +25,14 @@ import java.util.concurrent.Executors;
 
 import edu.wm.cs301.amazebynoahschulman.R;
 
-public class GeneratingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class GeneratingActivity extends AppCompatActivity  {
 
     private static final String TAG = "GeneratingActivity";
 
     // field variable to store which driver is being used
-    private int driver;
+    private String driver;
     // field variable to store which robot config is being used
-    private int robotConfig;
+    private String robotConfig;
 
     private RadioGroup driverRadioGroup;
     private RadioButton driverRadioButton;
@@ -141,8 +141,9 @@ public class GeneratingActivity extends AppCompatActivity implements AdapterView
 
     public void checkButton(View v) {
 
-        driver = driverRadioGroup.getCheckedRadioButtonId();
-        driverRadioButton = findViewById(driver);
+        int selectedId = driverRadioGroup.getCheckedRadioButtonId();
+        driverRadioButton = findViewById(selectedId);
+        driver = driverRadioButton.getText().toString();
         if (driverRadioButton == findViewById(R.id.radio_wallfollower) || driverRadioButton == findViewById(R.id.radio_wizard)) {
             robotConfigRadioGroup.setVisibility(View.VISIBLE);
             robotConfigText.setVisibility(View.VISIBLE);
@@ -178,8 +179,9 @@ public class GeneratingActivity extends AppCompatActivity implements AdapterView
 
     public void checkButton2(View v) {
 
-        driver = robotConfigRadioGroup.getCheckedRadioButtonId();
-        robotConfigRadioButton = findViewById(driver);
+        int selectedId = robotConfigRadioGroup.getCheckedRadioButtonId();
+        robotConfigRadioButton = findViewById(selectedId);
+        robotConfig = robotConfigRadioButton.getText().toString();
         if (robotConfigRadioButton == findViewById(R.id.radio_premium) || robotConfigRadioButton == findViewById(R.id.radio_mediocre)
                 || robotConfigRadioButton == findViewById(R.id.radio_soso) || robotConfigRadioButton == findViewById(R.id.radio_shaky)) {
             robot = true;
@@ -193,16 +195,6 @@ public class GeneratingActivity extends AppCompatActivity implements AdapterView
     }
 
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        robotConfig = i;
-        String choice = adapterView.getItemAtPosition(i).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
 
     @Override
     public void onBackPressed() {

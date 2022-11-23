@@ -38,7 +38,7 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
      * FOR PROJECT 6 THIS IS AN INT
      * IN PROJECT 7 IT WILL BE TYPE BUILDER
      */
-    private int builderAlgo;
+    private String builderAlgo;
 
     private SeekBar seekBar;
     private TextView seekBarProgress;
@@ -50,11 +50,6 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_amaze);
-
-
-
-
-
 
         // this is for the exploreButton, moves it to GeneratingActivity when clicked
         final Button exploreButton = findViewById(R.id.exploreButton);
@@ -126,8 +121,8 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        builderAlgo = i;
         String choice = adapterView.getItemAtPosition(i).toString();
+        builderAlgo = choice;
     }
 
     @Override

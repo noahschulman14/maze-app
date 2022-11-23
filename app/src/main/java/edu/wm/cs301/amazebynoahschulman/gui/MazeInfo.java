@@ -14,7 +14,7 @@ public class MazeInfo {
      * FOR PROJECT 6 THIS IS AN INT
      * IN PROJECT 7 IT WILL BE TYPE BUILDER
      */
-    protected static int builderAlgo;
+    protected static String builderAlgo;
 
     // field variable to store driver type
     protected static int driver;
