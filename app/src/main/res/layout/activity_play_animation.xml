@@ -75,8 +75,7 @@
         android:text="@string/pause"
         android:visibility="invisible"
         app:layout_constraintBaseline_toBaselineOf="@+id/startButton"
-        app:layout_constraintStart_toStartOf="@+id/sensorStatusTextView"
-        tools:visibility="invisible" />
+        app:layout_constraintStart_toStartOf="@+id/sensorStatusTextView" />
 
     <Button
         android:id="@+id/startButton"
@@ -213,7 +212,7 @@
         app:srcCompat="@drawable/red" />
 
     <edu.wm.cs301.amazebynoahschulman.gui.MazePanelPlayAnimation
-        android:id="@+id/mazePanel2"
+        android:id="@+id/mazePanel"
         android:layout_width="0dp"
         android:layout_height="330dp"
         android:layout_marginTop="126dp"
@@ -222,6 +221,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/rightGreen"
         app:layout_constraintTop_toTopOf="@+id/rightRed"></edu.wm.cs301.amazebynoahschulman.gui.MazePanelPlayAnimation>
+
+    <Button
+        android:id="@+id/go2WinningButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/go2Winning"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mazePanel" />
+
+    <Button
+        android:id="@+id/go2LosingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/go2Losing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mazePanel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

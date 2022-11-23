@@ -48,5 +48,7 @@
     <string name="back">BACK</string>
     <string name="left">LEFT</string>
     <string name="right">RIGHT</string>
+    <string name="go2Winning">GO2WINNING</string>
+    <string name="go2Losing">GO2LOSING</string>
 
 </resources>

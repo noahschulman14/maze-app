@@ -18,6 +18,9 @@ public class PlayManuallyActivity extends AppCompatActivity {
     // path length
     int pathLength = 0;
 
+    // distance to exit
+    int distanceToExit = 0;
+
     // forward button
     private ImageButton forwardButton;
     // jump button
@@ -92,8 +95,9 @@ public class PlayManuallyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), WinningActivity.class);
-                // also passing the pathLength to StateWinning
+                // also passing the pathLength and distance2Exit to StateWinning
                 intent.putExtra("pathLength", pathLength);
+                intent.putExtra("distance2Exit", distanceToExit);
                 startActivity(intent);
             }
         });

@@ -63,7 +63,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/jumpButton"
         app:layout_constraintEnd_toEndOf="@+id/rightButton"
         app:layout_constraintStart_toStartOf="@+id/leftButton"
-        app:layout_constraintTop_toBottomOf="@+id/mazePanel2"
+        app:layout_constraintTop_toBottomOf="@+id/mazePanel"
         app:srcCompat="@drawable/up_arrow_test" />
 
     <ImageButton
@@ -130,7 +130,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <edu.wm.cs301.amazebynoahschulman.gui.MazePanel
-        android:id="@+id/mazePanel2"
+        android:id="@+id/mazePanel"
         android:layout_width="334dp"
         android:layout_height="290dp"
         android:layout_marginStart="81dp"
