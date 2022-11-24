@@ -1,5 +1,8 @@
 package edu.wm.cs301.amazebynoahschulman.gui;
 
+/**
+ * MazeInfo class - stores information about the maze/maze game to be played/generated
+ */
 public class MazeInfo {
     /**
      * Field variable to store maze size
@@ -11,17 +14,18 @@ public class MazeInfo {
     protected static boolean rooms;
     /**
      * Field variable to store maze builder algorithm
-     * FOR PROJECT 6 THIS IS AN INT
-     * IN PROJECT 7 IT WILL BE TYPE BUILDER
      */
     protected static String builderAlgo;
-
-    // field variable to store driver type
+    /**
+     * Field variable to store the driver type
+     */
     protected static String driver;
-
-    // field variable to store robotConfig
+    /**
+     * Field variable to store the robot sensor configuration
+     */
     protected static String robotConfig;
-
-    // field variable for random seed
+    /**
+     * Field variable to store the maze's random seed
+     */
     protected static int randomSeed;
 }
