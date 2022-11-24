@@ -12,21 +12,32 @@ import android.widget.Toast;
 
 import edu.wm.cs301.amazebynoahschulman.R;
 
+/**
+ * LosingActivity activity class - losing screen which tells the user that the robot lost the game,
+ * the robot's path length, reason for loss, shortest possible path length, and energy consumed.
+ * Also allows user to restart game/return to title screen.
+ */
 public class LosingActivity extends AppCompatActivity {
-
+    /**
+     * TAG field variable for Log.V calls
+     */
     private static final String TAG = "LosingActivity";
-
-    // restart game button
+    /**
+     * restartGame Button field variable
+     */
     private Button restartGame;
-
-    // path length text view
+    /**
+     * pathlengthTextView TextView field variable
+     */
     private TextView pathlengthTextView;
-    // shortest path length text view;
+    /**
+     * shortestPathLengthTextView TextView field variable
+     */
     private TextView shortestPathLengthTextView;
-    // energy consumption text view;
+    /**
+     * energyConsumptionTextView TextView field variable
+     */
     private TextView energyConsumptionTextView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -26,6 +26,12 @@ import java.util.concurrent.Executors;
 
 import edu.wm.cs301.amazebynoahschulman.R;
 
+/**
+ * GeneratingActivity activity class - runs a background thread that
+ * builds maze, displays progress of that on screen.
+ * Allows user to select a driver and robot configuration while background maze generation
+ * thread is running.
+ */
 public class GeneratingActivity extends AppCompatActivity  {
     /**
      * TAG field variable for Log.v calls
