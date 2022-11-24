@@ -28,8 +28,10 @@ import java.util.concurrent.Executors;
 import edu.wm.cs301.amazebynoahschulman.R;
 
 public class AMazeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    /**
+     * TAG field variable for Log.v calls
+     */
     private static final String TAG = "GeneratingActivity";
-
     /**
      * Field variable to store maze size
      */
