@@ -61,7 +61,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
 
         // this is for JUMP BUTTON, increases path length by 1
         // IN P7 WILL JUMP ROBOT
-        jumpButton = findViewById(R.id.forwardButton);
+        jumpButton = findViewById(R.id.jumpButton);
         jumpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

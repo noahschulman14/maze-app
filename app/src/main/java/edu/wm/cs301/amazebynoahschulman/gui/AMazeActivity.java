@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,14 +18,19 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import edu.wm.cs301.amazebynoahschulman.R;
 
 public class AMazeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private static final String TAG = "GeneratingActivity";
+
+
     /**
      * Field variable to store maze size
      */
@@ -55,12 +61,16 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
         final Button exploreButton = findViewById(R.id.exploreButton);
         exploreButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Log.v(TAG, "Explore button pressed");
+                Toast.makeText(getApplicationContext(),"Explore button pressed",Toast.LENGTH_SHORT).show();
                 // Code here executes on main thread after user presses button
                 MazeInfo.rooms = rooms;
                 MazeInfo.size = size;
                 MazeInfo.builderAlgo = builderAlgo;
                 Intent intent = new Intent(getApplicationContext(), GeneratingActivity.class);
                 startActivity(intent);
+                Random r = new Random();
+                MazeInfo.randomSeed = r.nextInt(500);
             }
         });
 
@@ -68,6 +78,8 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
         final Button revisitButton = findViewById(R.id.revisitButton);
         revisitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Log.v(TAG, "Revisit button pressed");
+                Toast.makeText(getApplicationContext(),"Revisit button pressed",Toast.LENGTH_SHORT).show();
                 // Code here executes on main thread after user presses button
                 Intent intent = new Intent(getApplicationContext(), GeneratingActivity.class);
                 startActivity(intent);
@@ -87,7 +99,8 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
+                Log.v(TAG, "Size seekbar pressed");
+                Toast.makeText(getApplicationContext(),"Size seekbar pressed",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -109,8 +122,12 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
         roomsSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    Log.v(TAG, "Room switch toggled ON");
+                    Toast.makeText(getApplicationContext(),"Room switch toggle ON",Toast.LENGTH_SHORT).show();
                         rooms = true;
                 } else {
+                    Log.v(TAG, "Room switch toggled OFF");
+                    Toast.makeText(getApplicationContext(),"Room switch toggled OFF",Toast.LENGTH_SHORT).show();
                        rooms = false;
                 }
             }
@@ -123,6 +140,8 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String choice = adapterView.getItemAtPosition(i).toString();
         builderAlgo = choice;
+        Log.v(TAG, "Generation algo spinner selected to " + choice);
+        Toast.makeText(getApplicationContext(),"Generation algo spinner selected to " + choice,Toast.LENGTH_SHORT).show();
     }
 
     @Override

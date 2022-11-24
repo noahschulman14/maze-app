@@ -145,6 +145,7 @@ public class GeneratingActivity extends AppCompatActivity  {
         driverRadioButton = findViewById(selectedId);
         driver = driverRadioButton.getText().toString();
         if (driverRadioButton == findViewById(R.id.radio_wallfollower) || driverRadioButton == findViewById(R.id.radio_wizard)) {
+            MazeInfo.driver = driver;
             robotConfigRadioGroup.setVisibility(View.VISIBLE);
             robotConfigText.setVisibility(View.VISIBLE);
             if (!robot) {
@@ -184,6 +185,7 @@ public class GeneratingActivity extends AppCompatActivity  {
         robotConfig = robotConfigRadioButton.getText().toString();
         if (robotConfigRadioButton == findViewById(R.id.radio_premium) || robotConfigRadioButton == findViewById(R.id.radio_mediocre)
                 || robotConfigRadioButton == findViewById(R.id.radio_soso) || robotConfigRadioButton == findViewById(R.id.radio_shaky)) {
+            MazeInfo.robotConfig = robotConfig;
             robot = true;
             shortly.setVisibility(View.VISIBLE);
             if (ready && auto) {
