@@ -14,7 +14,7 @@ import edu.wm.cs301.amazebynoahschulman.R;
 
 public class LosingActivity extends AppCompatActivity {
 
-    private static final String TAG = "GeneratingActivity";
+    private static final String TAG = "LosingActivity";
 
     // restart game button
     private Button restartGame;
