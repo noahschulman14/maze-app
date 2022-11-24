@@ -51,4 +51,13 @@
     <string name="go2Winning">GO2WINNING</string>
     <string name="go2Losing">GO2LOSING</string>
 
+    // strings for WinningActivity
+    <string name="congratulations">YOU WON</string>
+    <string name="restartGame">RESTART GAME</string>
+    <string name="pathLength">PATH LENGTH: </string>
+    <string name="shortestPathLength">SHORTEST POSSIBLE PATH: </string>
+    <string name="energyConsumption">ENERGY CONSUMED: </string>
+
+
+
 </resources>

@@ -19,6 +19,9 @@ public class PlayAnimationActivity extends AppCompatActivity {
     // distance to exit
     int distanceToExit = 0;
 
+    // energy consumption
+    int energyConsumption = 0;
+
     // start button
     private Button startButton;
     // pause button
@@ -77,6 +80,8 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 // also passing the pathLength and distance2Exit to StateWinning
                 intent.putExtra("pathLength", pathLength);
                 intent.putExtra("distance2Exit", distanceToExit);
+                intent.putExtra("energyConsumption", energyConsumption);
+                intent.putExtra("playAnimation", true);
                 startActivity(intent);
             }
         });
@@ -90,6 +95,8 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 // also passing the pathLength and distance2Exit to StateWinning
                 intent.putExtra("pathLength", pathLength);
                 intent.putExtra("distance2Exit", distanceToExit);
+                intent.putExtra("energyConsumption", energyConsumption);
+                intent.putExtra("playAnimation", true);
                 startActivity(intent);
             }
         });
