@@ -42,7 +42,9 @@ public class MazePanel extends View {
      * Field variable for scaled bitmap
      */
     private Bitmap manual3;
-    // Field variable for the paint
+    /**
+     * Field variable for the paint
+     */
     private Paint paint;
 
     /**
