@@ -4,16 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import edu.wm.cs301.amazebynoahschulman.R;
 
 public class PlayManuallyActivity extends AppCompatActivity {
+
+    private static final String TAG = "PlayAnimationActivity";
 
     // path length
     int pathLength = 0;
@@ -43,6 +47,9 @@ public class PlayManuallyActivity extends AppCompatActivity {
     // map size seekBar
     private SeekBar mapSizeSeekBar;
 
+    // show map boolean
+    private boolean showMap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
         forwardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.v(TAG, "FORWARD button pressed");
+                Toast.makeText(getApplicationContext(),"FORWARD button pressed",Toast.LENGTH_SHORT).show();
                 pathLength++;
             }
         });
@@ -65,6 +74,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
         jumpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.v(TAG, "JUMP button pressed");
+                Toast.makeText(getApplicationContext(),"JUMP button pressed",Toast.LENGTH_SHORT).show();
                 pathLength++;
             }
         });
@@ -75,7 +86,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Log.v(TAG, "LEFT button pressed");
+                Toast.makeText(getApplicationContext(),"LEFT button pressed",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -85,7 +97,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
         rightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Log.v(TAG, "RIGHT button pressed");
+                Toast.makeText(getApplicationContext(),"RIGHT button pressed",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -94,6 +107,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
         shortCutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.v(TAG, "SHORTCUT button pressed");
+                Toast.makeText(getApplicationContext(),"SHORTCUT button pressed",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), WinningActivity.class);
                 // also passing the pathLength and distance2Exit to StateWinning
                 intent.putExtra("pathLength", pathLength);
@@ -110,8 +125,16 @@ public class PlayManuallyActivity extends AppCompatActivity {
         showMapSwitch = findViewById(R.id.showMapSwitch);
         showMapSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    Log.v(TAG, "SHOW MAP switch toggled ON");
+                    Toast.makeText(getApplicationContext(),"SHOW MAP switch toggle ON",Toast.LENGTH_SHORT).show();
+                    showMap = true;
+                } else {
+                    Log.v(TAG, "SHOW MAP switch toggled OFF");
+                    Toast.makeText(getApplicationContext(),"SHOW MAP switch toggled OFF",Toast.LENGTH_SHORT).show();
+                    showMap = false;
+                }
             }
         });
 
@@ -120,8 +143,16 @@ public class PlayManuallyActivity extends AppCompatActivity {
         showVisibleWallsSwitch = findViewById(R.id.showVisibleWallsSwitch);
         showVisibleWallsSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    Log.v(TAG, "SHOW SOLUTION switch toggled ON");
+                    Toast.makeText(getApplicationContext(),"SHOW SOLUTION switch toggle ON",Toast.LENGTH_SHORT).show();
+                    showMap = true;
+                } else {
+                    Log.v(TAG, "SHOW SOLUTION switch toggled OFF");
+                    Toast.makeText(getApplicationContext(),"SHOW SOLUTION switch toggled OFF",Toast.LENGTH_SHORT).show();
+                    showMap = false;
+                }
             }
         });
 
@@ -130,8 +161,16 @@ public class PlayManuallyActivity extends AppCompatActivity {
         showSolutionSwitch = findViewById(R.id.showSolutionSwitch);
         showSolutionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    Log.v(TAG, "SHOW VISIBLE WALLS switch toggled ON");
+                    Toast.makeText(getApplicationContext(),"SHOW VISIBLE WALLS switch toggle ON",Toast.LENGTH_SHORT).show();
+                    showMap = true;
+                } else {
+                    Log.v(TAG, "SHOW VISIBLE WALLS switch toggled OFF");
+                    Toast.makeText(getApplicationContext(),"SHOW VISIBLE WALLS switch toggled OFF",Toast.LENGTH_SHORT).show();
+                    showMap = false;
+                }
             }
         });
 
@@ -145,7 +184,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
+                Log.v(TAG, "MAP SIZE seekbar touched");
+                Toast.makeText(getApplicationContext(),"MAP SIZE seekbar touched",Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
@@ -157,6 +197,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
     // back button functionality, moves to StateTitle
     @Override
     public void onBackPressed() {
+        Log.v(TAG, "BACK button pressed");
+        Toast.makeText(getApplicationContext(),"BACK button pressed",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
         startActivity(intent);
     }
