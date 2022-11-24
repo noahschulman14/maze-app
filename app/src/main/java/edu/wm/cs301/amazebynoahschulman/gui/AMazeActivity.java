@@ -30,7 +30,6 @@ import edu.wm.cs301.amazebynoahschulman.R;
 public class AMazeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final String TAG = "GeneratingActivity";
 
-
     /**
      * Field variable to store maze size
      */
@@ -45,10 +44,21 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
      * IN PROJECT 7 IT WILL BE TYPE BUILDER
      */
     private String builderAlgo;
-
+    /**
+     * Map size seekbar field variable
+     */
     private SeekBar seekBar;
+    /**
+     * seekBarProgress TextView field variable
+     */
     private TextView seekBarProgress;
+    /**
+     * builderAlgoSpinner Spinner field variable
+     */
     private Spinner builderAlgoSpinner;
+    /**
+     * roomsSwitch Switch field variable
+     */
     private Switch roomsSwitch;
 
 
@@ -136,6 +146,7 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
 
     }
 
+    // this is for the builder algo spinner
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String choice = adapterView.getItemAtPosition(i).toString();
