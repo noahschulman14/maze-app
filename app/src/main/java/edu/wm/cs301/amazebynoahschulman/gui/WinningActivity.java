@@ -13,19 +13,26 @@ import android.widget.Toast;
 import edu.wm.cs301.amazebynoahschulman.R;
 
 public class WinningActivity extends AppCompatActivity {
-
+    /**
+     * TAG field variable for calls to Log.v
+     */
     private static final String TAG = "PlayAnimationActivity";
-
-    // restart game button
+    /**
+     * restartGame Button field variable
+     */
     private Button restartGame;
-
-    // path length text view
+    /**
+     * PathLengthTextView TextView field variable
+     */
     private TextView pathlengthTextView;
-    // shortest path length text view;
+    /**
+     * shortestPathLengthTextView TextView field variable
+     */
     private TextView shortestPathLengthTextView;
-    // energy consumption text view;
+    /**
+     * energyConsumptionTextView TextView field variable
+     */
     private TextView energyConsumptionTextView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

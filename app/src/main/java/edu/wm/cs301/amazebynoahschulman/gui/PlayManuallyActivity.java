@@ -15,6 +15,12 @@ import android.widget.Toast;
 
 import edu.wm.cs301.amazebynoahschulman.R;
 
+/**
+ * PlayManuallyActivity class -
+ * in P6 displays a placeholder custom view and shortcut button to winning screen.
+ * Includes up, left, right, and jump movement control buttons, toggle switches to show map,
+ * map solution, and map visible walls, also a slider to adjust map size.
+ */
 public class PlayManuallyActivity extends AppCompatActivity {
     /**
      * TAG field variable for calls to Log.v
