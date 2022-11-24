@@ -16,46 +16,63 @@ import android.widget.Toast;
 import edu.wm.cs301.amazebynoahschulman.R;
 
 public class PlayManuallyActivity extends AppCompatActivity {
-
+    /**
+     * TAG field variable for calls to Log.v
+     */
     private static final String TAG = "PlayAnimationActivity";
-
-    // path length
+    /**
+     * Field variable to store path length, initialized to 0
+     */
     int pathLength = 0;
-
-    // distance to exit
+    /**
+     * field variable to store distance to exit, initialized to 0
+     */
     int distanceToExit = 0;
-
-    // forward button
+    /**
+     * forwardButton ImageButton field variable
+     */
     private ImageButton forwardButton;
-    // jump button
+    /**
+     * jumpButton ImageButton field variable
+     */
     private ImageButton jumpButton;
-    // left button
+    /**
+     * leftButton ImageButton field variable
+     */
     private ImageButton leftButton;
-    // right button
+    /**
+     * rightButton ImageButton field variable
+     */
     private ImageButton rightButton;
-
-    // shortcut button
+    /**
+     * shortCutButton Button field variable
+     */
     private Button shortCutButton;
-
-    // show map switch
+    /**
+     * showMapSwitch Switch field variable
+     */
     private Switch showMapSwitch;
-    // show visible walls switch
+    /**
+     * showVisibleWallsSwitch Switch field variable
+     */
     private Switch showVisibleWallsSwitch;
-    // show solution switch
+    /**
+     * showSolutionSwitch Switch field variable
+     */
     private Switch showSolutionSwitch;
-
-    // map size seekBar
+    /**
+     * mapSizeSeekBar SeekBar field variable
+     */
     private SeekBar mapSizeSeekBar;
-
-    // show map boolean
+    /**
+     * boolean field variable, tells whether map is shown or not
+     */
     private boolean showMap;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_manually);
-
         // this is for FORWARD BUTTON, increases path length by 1
         // IN P7 WILL MOVE ROBOT FORWARD
         forwardButton = findViewById(R.id.forwardButton);
