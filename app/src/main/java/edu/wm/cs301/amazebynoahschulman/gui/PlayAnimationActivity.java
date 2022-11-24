@@ -14,39 +14,62 @@ import android.widget.Toast;
 
 import edu.wm.cs301.amazebynoahschulman.R;
 
+/**
+ * PlayAnimationActivity class.
+ * Screen that shows maze being played, status of the sensors,
+ * ability to toggle map and change mpa size, ability to change animation speed,
+ * remaining energy for the robot, and ability to play and pause the animation.
+ */
 public class PlayAnimationActivity extends AppCompatActivity {
-
+    /**
+     * TAG field variable for Log.v calls
+     */
     private static final String TAG = "PlayAnimationActivity";
-
-    // path length
+    /**
+     * Field variable to store path length, initialized to 0
+     */
     int pathLength = 0;
-
-    // distance to exit
+    /**
+     * Field variable to store distanceToExit, initialized to 0
+     */
     int distanceToExit = 0;
-
-    // energy consumption
+    /**
+     * Field variable to store energy consumption, initialized to 0;
+     */
     int energyConsumption = 0;
-
-    // start button
+    /**
+     * startButton Button field variable
+     */
     private Button startButton;
-    // pause button
+    /**
+     * pauseButton Button field variable
+     */
     private Button pauseButton;
 
     //P6
-    // go2Winning button
+    /**
+     * go2WinningButton Buttonn field variable
+     */
     private Button go2WinningButton;
-    // go2Losing button
+    /**
+     * go2LosingButton Button field variable
+     */
     private Button go2LosingButton;
-
-    // show map switch
+    /**
+     * showMapSwitch Switch field variable
+     */
     private Switch showMapSwitch;
-
-    // show map boolean
+    /**
+     * Boolean field variable to tell whether map is shown
+     */
     private boolean showMap;
-
-    // map size seekbar
+    /**
+     * mapSizeSeekBar SeekBar field variable
+     */
     private SeekBar mapSizeSeekBar;
-    // animation speed seekbar
+    /**
+     * animationSpeedSeekBar SeekBar field variable
+     */
     private SeekBar animationSpeedSeekBar;
 
 
