@@ -140,7 +140,7 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String choice = adapterView.getItemAtPosition(i).toString();
         builderAlgo = choice;
-        Log.v(TAG, "Generation algo spinner selected to " + choice);
+        Log.v(TAG, "Generation algo spinner set to " + choice);
         Toast.makeText(getApplicationContext(),"Generation algo spinner selected to " + choice,Toast.LENGTH_SHORT).show();
     }
 

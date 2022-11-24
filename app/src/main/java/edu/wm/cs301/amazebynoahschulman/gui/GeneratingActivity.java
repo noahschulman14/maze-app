@@ -19,6 +19,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -43,7 +44,6 @@ public class GeneratingActivity extends AppCompatActivity  {
     private backgroundThread thread = new backgroundThread();
 
     private Button startButton;
-
 
     public void startThread() {
         thread.start();
@@ -76,6 +76,7 @@ public class GeneratingActivity extends AppCompatActivity  {
     class backgroundThread extends Thread {
         @Override
         public void run() {
+            Log.v(TAG, "BACKGROUND THREAD RUNNING");
             for (int i = 0; i <= 100; i++) {
                 try {
                     Thread.sleep(50);
@@ -129,21 +130,17 @@ public class GeneratingActivity extends AppCompatActivity  {
 
         startThread();
 
-
-
-
         // implementing driver radio group:
         driverRadioGroup = findViewById(R.id.radioGroup);
-
-
-
     }
 
+    // for driver radio button group
     public void checkButton(View v) {
-
         int selectedId = driverRadioGroup.getCheckedRadioButtonId();
         driverRadioButton = findViewById(selectedId);
         driver = driverRadioButton.getText().toString();
+        Log.v(TAG, driver + " radio button pressed");
+        Toast.makeText(getApplicationContext(),driver + " radio button pressed",Toast.LENGTH_SHORT).show();
         if (driverRadioButton == findViewById(R.id.radio_wallfollower) || driverRadioButton == findViewById(R.id.radio_wizard)) {
             MazeInfo.driver = driver;
             robotConfigRadioGroup.setVisibility(View.VISIBLE);
@@ -179,10 +176,11 @@ public class GeneratingActivity extends AppCompatActivity  {
     }
 
     public void checkButton2(View v) {
-
         int selectedId = robotConfigRadioGroup.getCheckedRadioButtonId();
         robotConfigRadioButton = findViewById(selectedId);
         robotConfig = robotConfigRadioButton.getText().toString();
+        Log.v(TAG,  robotConfig + " radio button pressed");
+        Toast.makeText(getApplicationContext(), robotConfig + " radio button pressed",Toast.LENGTH_SHORT).show();
         if (robotConfigRadioButton == findViewById(R.id.radio_premium) || robotConfigRadioButton == findViewById(R.id.radio_mediocre)
                 || robotConfigRadioButton == findViewById(R.id.radio_soso) || robotConfigRadioButton == findViewById(R.id.radio_shaky)) {
             MazeInfo.robotConfig = robotConfig;
@@ -196,10 +194,10 @@ public class GeneratingActivity extends AppCompatActivity  {
         }
     }
 
-
-
     @Override
     public void onBackPressed() {
+        Log.v(TAG, "back button pressed");
+        Toast.makeText(getApplicationContext(),"back button pressed",Toast.LENGTH_SHORT).show();
         stopThread();
         super.onBackPressed();
     }
