@@ -40,8 +40,8 @@ public class WinningActivity extends AppCompatActivity {
         // getting energy comsumption from previous activity, displays 77777 if nothing found
         int energyConsumption = previousActivity.getIntExtra("energyConsumption", 77777);
 
-        // THIS IS FOR SHORTCUT BUTTON, switches to State Winning
-        restartGame = findViewById(R.id.restartButton);
+        // THIS IS FOR RESTART GAME BUTTON, switches to State Winning
+        restartGame = findViewById(R.id.restartButton1);
         restartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,20 +52,20 @@ public class WinningActivity extends AppCompatActivity {
         });
 
         // this is to display path length text view
-        pathlengthTextView = findViewById(R.id.pathLengthTextView);
+        pathlengthTextView = findViewById(R.id.pathLengthTextView1);
         String pathLengthString = String.valueOf(pathLength);
         pathlengthTextView.append(" ");
         pathlengthTextView.append(pathLengthString);
 
         // this is to display shortest path length text view
-        shortestPathLengthTextView = findViewById(R.id.shortestPathLengthTextView);
+        shortestPathLengthTextView = findViewById(R.id.shortestPathLengthTextView1);
         String shortestPathLengthString = String.valueOf(shortestPathLength);
         shortestPathLengthTextView.append(" ");
         shortestPathLengthTextView.append(shortestPathLengthString);
 
         // this is to display energy consumption text view if previous activity was playAnimation
         if (AnimationBoolean) {
-            energyConsumptionTextView = findViewById(R.id.energyConsumptionTextView);
+            energyConsumptionTextView = findViewById(R.id.energyConsumptionTextView1);
             energyConsumptionTextView.setVisibility(View.VISIBLE);
             String energyConsumptionString = String.valueOf(energyConsumption);
             energyConsumptionTextView.append(" ");

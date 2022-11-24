@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/restartButton"
+        android:id="@+id/restartButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="177dp"
@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/pathLengthTextView"
+        android:id="@+id/pathLengthTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
@@ -41,23 +41,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/shortestPathLengthTextView"
+        android:id="@+id/shortestPathLengthTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:text="@string/shortestPathLength"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/pathLengthTextView"
-        app:layout_constraintTop_toBottomOf="@+id/pathLengthTextView" />
+        app:layout_constraintStart_toStartOf="@+id/pathLengthTextView1"
+        app:layout_constraintTop_toBottomOf="@+id/pathLengthTextView1" />
 
     <TextView
-        android:id="@+id/energyConsumptionTextView"
+        android:id="@+id/energyConsumptionTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:text="@string/energyConsumption"
         android:textStyle="bold"
         android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="@+id/shortestPathLengthTextView"
-        app:layout_constraintTop_toBottomOf="@+id/shortestPathLengthTextView" />
+        app:layout_constraintStart_toStartOf="@+id/shortestPathLengthTextView1"
+        app:layout_constraintTop_toBottomOf="@+id/shortestPathLengthTextView1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

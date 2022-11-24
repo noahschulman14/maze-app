@@ -58,6 +58,9 @@
     <string name="shortestPathLength">SHORTEST POSSIBLE PATH: </string>
     <string name="energyConsumption">ENERGY CONSUMED: </string>
 
+    // strings for LosingActivity
+    <string name="youLost">YOU LOST</string>
+    <string name="reason">ROBOT RAN OUT OF ENERGY OR CRASHED</string>
 
 
 </resources>
