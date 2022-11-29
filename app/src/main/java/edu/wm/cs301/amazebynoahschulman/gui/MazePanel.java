@@ -15,6 +15,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import org.w3c.dom.Attr;
 
@@ -28,9 +29,12 @@ import edu.wm.cs301.amazebynoahschulman.R;
  */
 public class MazePanel extends View implements P7PanelF22{
     /**
-     * Field variable for the canvas
+     * Field variable for the UIcanvas
      */
     private Canvas canvas;
+
+    private Canvas internalCanvas;
+
     /**
      * Field variable for the bitmap
      */
@@ -54,6 +58,8 @@ public class MazePanel extends View implements P7PanelF22{
      */
     public MazePanel(Context context) {
         super(context);
+
+
         init(null);
     }
 
@@ -95,28 +101,84 @@ public class MazePanel extends View implements P7PanelF22{
      * @param set
      */
     private void init(@Nullable AttributeSet set) {
-        manual = BitmapFactory.decodeResource(getResources(), R.drawable.manual_test_image);
-        manual2 = manual.copy(Bitmap.Config.ARGB_8888, true);
-        manual3 = Bitmap.createScaledBitmap(manual2, 700, 700, true);
-        canvas = new Canvas(manual3);
+        //manual = BitmapFactory.decodeResource(getResources(), R.drawable.manual_test_image);
+        //manual2 = manual.copy(Bitmap.Config.ARGB_8888, true);
+        //manual3 = Bitmap.createScaledBitmap(manual2, 700, 700, true);
+        manual = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_8888);
+        manual3 = Bitmap.createScaledBitmap(manual, 1500, 1500, true);
+        canvas = new Canvas();
         paint = new Paint();
+
+
+        internalCanvas = new Canvas(manual3);
+
+        testMyImage(internalCanvas);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        //testMyImage(canvas);
         canvas.drawBitmap(manual3, 0, 0, paint);
     }
 
+    private void testMyImage(Canvas c) {
+        canvas = c;
 
-    @Override
-    public void commit() {
+        // paint background, using 1 as placeholder value
+        addBackground(1);
+
+        // paint red ball
+        setColor(Color.RED);
+        addFilledOval(5, 5, 500, 500);
+
+        // paint green ball
+        setColor(Color.GREEN);
+        addFilledOval(10, 600, 300, 300);
+
+        // paint yellow rectangle
+        setColor(Color.YELLOW);
+        addFilledRectangle(600, 5, 150, 200);
+
+        // paint blue polygon
+        // making array for x points and y points
+        setColor(Color.BLUE);
+        int[] xPoints = {600, 750, 950};
+        int [] yPoints = {400, 750, 950};
+        addFilledPolygon(xPoints, yPoints, 3);
+
+        // printing a few lines
+        setColor(Color.CYAN);
+        addLine(200, 600, 600, 1000);
+        // printing a few lines
+        setColor(Color.WHITE);
+        addLine(1000, 600, 600, 200);
+
 
     }
 
+    /**
+     * Commits all accumulated drawings to the UI.
+     * Substitute for MazePanel.update method.
+     */
+    @Override
+    public void commit() {
+        // *** DON'T KNOW WHAT TO PUT HERE RIGHT NOW ****
+    }
+
+    /**
+     * Tells if instance is able to draw. This ability depends on the
+     * context, for instance, in a testing environment, drawing
+     * may be not possible and not desired.
+     * Substitute for code that checks if graphics object for drawing is not null.
+     * @return true if drawing is possible, false if not.
+     */
     @Override
     public boolean isOperational() {
-        return false;
+        if (canvas == null) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -129,9 +191,24 @@ public class MazePanel extends View implements P7PanelF22{
         return paint.getColor();
     }
 
+    /**
+     * Draws two solid rectangles to provide a background.
+     * Note that this also erases any previous drawings.
+     * The color setting adjusts to the distance to the exit to
+     * provide an additional clue for the user.
+     * Colors transition from black to gold and from grey to green.
+     * Substitute for FirstPersonView.drawBackground method.
+     * @param percentToExit gives the distance to exit
+     */
     @Override
     public void addBackground(float percentToExit) {
-        // SEE FirstPersonView drawBackground method
+        // *** FOR NOW MAKE THE TOP COLOR GRAY ***
+        setColor(Color.GRAY);
+        // now draw rectangle that takes up bottom half of the MazePanel
+        addFilledRectangle(0,0, 1000, 500);
+        // *** FOR NOW MAKE THE BOTTOM COLOR BACK ***
+        setColor(Color.BLACK);
+        addFilledRectangle(0,500, 1000, 500);
     }
 
     /**

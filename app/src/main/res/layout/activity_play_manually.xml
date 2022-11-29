@@ -6,138 +6,154 @@
     android:layout_height="match_parent"
     tools:context=".gui.PlayManuallyActivity">
 
-    <Switch
-        android:id="@+id/showVisibleWallsSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="52dp"
-        android:text="@string/showVisibleWalls"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Switch
-        android:id="@+id/showSolutionSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="@string/showSolution"
-        app:layout_constraintBottom_toBottomOf="@+id/showVisibleWallsSwitch"
-        app:layout_constraintEnd_toStartOf="@+id/showVisibleWallsSwitch" />
-
-    <SeekBar
-        android:id="@+id/mapSizeSeekBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:max="100"
-        android:progress="50"
+    <edu.wm.cs301.amazebynoahschulman.gui.MazePanel
+        android:id="@+id/mazePanel"
+        android:layout_width="375dp"
+        android:layout_height="375dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="65dp"
+        app:layout_constraintBottom_toTopOf="@+id/rightButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mapSizeTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/shortCutButton" />
 
     <TextView
         android:id="@+id/mapSizeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="@string/mapSize"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/showVisibleWallsSwitch"
-        app:layout_constraintStart_toStartOf="@+id/showVisibleWallsSwitch"
+        app:layout_constraintBottom_toTopOf="@+id/mapSizeSeekBar"
+        app:layout_constraintEnd_toEndOf="@+id/mapSizeSeekBar"
+        app:layout_constraintStart_toStartOf="@+id/mapSizeSeekBar"
         app:layout_constraintTop_toBottomOf="@+id/showVisibleWallsSwitch" />
-
-    <ImageButton
-        android:id="@+id/forwardButton"
-        android:layout_width="122dp"
-        android:layout_height="116dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="115dp"
-        android:layout_marginBottom="87dp"
-        android:adjustViewBounds="true"
-        android:maxWidth="100dp"
-        android:maxHeight="100dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="@+id/jumpButton"
-        app:layout_constraintEnd_toEndOf="@+id/rightButton"
-        app:layout_constraintStart_toStartOf="@+id/leftButton"
-        app:layout_constraintTop_toBottomOf="@+id/mazePanel"
-        app:srcCompat="@drawable/up_arrow_test" />
-
-    <ImageButton
-        android:id="@+id/jumpButton"
-        android:layout_width="0dp"
-        android:layout_height="87dp"
-        android:layout_marginTop="77dp"
-        android:layout_marginBottom="83dp"
-        android:adjustViewBounds="true"
-        android:maxWidth="100dp"
-        android:maxHeight="100dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="@+id/showMapSwitch"
-        app:layout_constraintEnd_toEndOf="@+id/forwardButton"
-        app:layout_constraintStart_toStartOf="@+id/forwardButton"
-        app:layout_constraintTop_toTopOf="@+id/rightButton"
-        app:srcCompat="@drawable/jump_test" />
 
     <ImageButton
         android:id="@+id/leftButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="27dp"
         android:adjustViewBounds="true"
         android:maxWidth="100dp"
         android:maxHeight="100dp"
         android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/showMapSwitch"
+        app:layout_constraintEnd_toStartOf="@+id/forwardButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/forwardButton"
+        app:layout_constraintTop_toBottomOf="@+id/rightButton"
         app:srcCompat="@drawable/left_arrow_test" />
 
-    <ImageButton
-        android:id="@+id/rightButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="208dp"
-        android:adjustViewBounds="true"
-        android:maxWidth="100dp"
-        android:maxHeight="100dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/right_arrow_test" />
-
     <Switch
-        android:id="@+id/showMapSwitch"
+        android:id="@+id/showSolutionSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/showMap"
-        app:layout_constraintBottom_toTopOf="@+id/showSolutionSwitch"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/showSolution"
+        app:layout_constraintBottom_toBottomOf="@+id/showVisibleWallsSwitch"
         app:layout_constraintEnd_toStartOf="@+id/showVisibleWallsSwitch"
-        app:layout_constraintStart_toStartOf="@+id/showVisibleWallsSwitch" />
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/shortCutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="55dp"
         android:text="SHORTCUT"
+        app:layout_constraintBottom_toTopOf="@+id/mazePanel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <edu.wm.cs301.amazebynoahschulman.gui.MazePanel
-        android:id="@+id/mazePanel"
-        android:layout_width="334dp"
-        android:layout_height="290dp"
-        android:layout_marginStart="81dp"
-        android:layout_marginTop="125dp"
-        android:layout_marginBottom="123dp"
-        app:layout_constraintBottom_toTopOf="@+id/rightButton"
+    <SeekBar
+        android:id="@+id/mapSizeSeekBar"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="31dp"
+        android:max="100"
+        android:progress="50"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/shortCutButton" />
+        app:layout_constraintTop_toBottomOf="@+id/mapSizeTextView" />
+
+    <ImageButton
+        android:id="@+id/rightButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="41dp"
+        android:adjustViewBounds="true"
+        android:maxWidth="100dp"
+        android:maxHeight="100dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/leftButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/forwardButton"
+        app:layout_constraintTop_toBottomOf="@+id/mazePanel"
+        app:srcCompat="@drawable/right_arrow_test" />
+
+    <Switch
+        android:id="@+id/showVisibleWallsSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:text="@string/showVisibleWalls"
+        app:layout_constraintBottom_toTopOf="@+id/mapSizeTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/showSolutionSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/showMapSwitch" />
+
+    <ImageButton
+        android:id="@+id/jumpButton"
+        android:layout_width="122dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="31dp"
+        android:adjustViewBounds="true"
+        android:maxWidth="100dp"
+        android:maxHeight="100dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/showMapSwitch"
+        app:layout_constraintEnd_toEndOf="@+id/rightButton"
+        app:layout_constraintStart_toStartOf="@+id/leftButton"
+        app:layout_constraintTop_toTopOf="@+id/leftButton"
+        app:srcCompat="@drawable/jump_test" />
+
+    <ImageButton
+        android:id="@+id/forwardButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="23dp"
+        android:adjustViewBounds="true"
+        android:maxWidth="100dp"
+        android:maxHeight="100dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/rightButton"
+        app:layout_constraintEnd_toStartOf="@+id/rightButton"
+        app:layout_constraintStart_toEndOf="@+id/leftButton"
+        app:layout_constraintTop_toBottomOf="@+id/mazePanel"
+        app:srcCompat="@drawable/up_arrow_test" />
+
+    <Switch
+        android:id="@+id/showMapSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="21dp"
+        android:text="@string/showMap"
+        app:layout_constraintBottom_toTopOf="@+id/showVisibleWallsSwitch"
+        app:layout_constraintEnd_toEndOf="@+id/jumpButton"
+        app:layout_constraintTop_toBottomOf="@+id/leftButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
