@@ -288,7 +288,34 @@ public class GeneratingActivity extends AppCompatActivity  {
         Toast.makeText(getApplicationContext(), robotConfig + " radio button pressed",Toast.LENGTH_SHORT).show();
         if (robotConfigRadioButton == findViewById(R.id.radio_premium) || robotConfigRadioButton == findViewById(R.id.radio_mediocre)
                 || robotConfigRadioButton == findViewById(R.id.radio_soso) || robotConfigRadioButton == findViewById(R.id.radio_shaky)) {
-            MazeInfo.robotConfig = robotConfig;
+            if (robotConfigRadioButton == findViewById(R.id.radio_premium)) {
+                // premium has 4 reliable sensors
+                MazeInfo.sensorForward = new ReliableSensor();
+                MazeInfo.sensorBackward = new ReliableSensor();
+                MazeInfo.sensorLeft = new ReliableSensor();
+                MazeInfo.sensorRight = new ReliableSensor();
+            }
+            if (robotConfigRadioButton == findViewById(R.id.radio_mediocre)) {
+                // mediocre has reliable front & back sensors, unreliable left and right sensors
+                MazeInfo.sensorForward = new ReliableSensor();
+                MazeInfo.sensorBackward = new ReliableSensor();
+                MazeInfo.sensorLeft = new UnreliableSensor();
+                MazeInfo.sensorRight = new UnreliableSensor();
+            }
+            if (robotConfigRadioButton == findViewById(R.id.radio_soso)) {
+                // soso has reliable left & right sensors, unreliable front and back sensors
+                MazeInfo.sensorForward = new UnreliableSensor();
+                MazeInfo.sensorBackward = new UnreliableSensor();
+                MazeInfo.sensorLeft = new ReliableSensor();
+                MazeInfo.sensorRight = new ReliableSensor();
+            }
+            if (robotConfigRadioButton == findViewById(R.id.radio_shaky)) {
+                // shaky has 4 unreliable sensors
+                MazeInfo.sensorForward = new UnreliableSensor();
+                MazeInfo.sensorBackward = new UnreliableSensor();
+                MazeInfo.sensorLeft = new UnreliableSensor();
+                MazeInfo.sensorRight = new UnreliableSensor();
+            }
             robot = true;
             // if robot config is set, display text that says game will start shortly
             shortly.setVisibility(View.VISIBLE);

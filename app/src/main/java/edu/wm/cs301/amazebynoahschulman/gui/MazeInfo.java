@@ -1,5 +1,6 @@
 package edu.wm.cs301.amazebynoahschulman.gui;
 
+import edu.wm.cs301.amazebynoahschulman.generation.Distance;
 import edu.wm.cs301.amazebynoahschulman.generation.Maze;
 import edu.wm.cs301.amazebynoahschulman.generation.Order;
 
@@ -24,9 +25,21 @@ public class MazeInfo {
      */
     protected static RobotDriver driver;
     /**
-     * Field variable to store the robot sensor configuration
+     * Field variable to store forward sensor
      */
-    protected static String robotConfig;
+    protected static DistanceSensor sensorForward;
+    /**
+     * Field variable to store backward sensor
+     */
+    protected static DistanceSensor sensorBackward;
+    /**
+     * Field variable to store left sensor
+     */
+    protected static DistanceSensor sensorLeft;
+    /**
+     * Field variable to store right sensor
+     */
+    protected static DistanceSensor sensorRight;
     /**
      * Field variable to store the maze's random seed
      */
@@ -39,4 +52,8 @@ public class MazeInfo {
      * Field variable to store the maze object
      */
     protected static Maze maze;
+    /**
+     * Field variable to store the unreliable robot
+     */
+    //
 }
