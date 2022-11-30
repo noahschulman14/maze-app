@@ -26,6 +26,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import edu.wm.cs301.amazebynoahschulman.R;
+import edu.wm.cs301.amazebynoahschulman.generation.Maze;
+import edu.wm.cs301.amazebynoahschulman.generation.Order;
 
 /**
  * AMazeActivity activity class - displays title page to select
@@ -80,10 +82,21 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
             public void onClick(View v) {
                 Log.v(TAG, "Explore button pressed");
                 Toast.makeText(getApplicationContext(),"Explore button pressed",Toast.LENGTH_SHORT).show();
+
+                MazeInfo.started = true;
+
                 // Code here executes on main thread after user presses button
                 MazeInfo.rooms = rooms;
                 MazeInfo.size = size;
-                MazeInfo.builderAlgo = builderAlgo;
+
+                // setting maze's builder algorithm according to selected builderAlgo string
+                if (builderAlgo == "Boruvka")
+                    MazeInfo.builderAlgo = Order.Builder.Boruvka;
+                else if (builderAlgo == "DFS")
+                    MazeInfo.builderAlgo = Order.Builder.DFS;
+                else
+                    MazeInfo.builderAlgo = Order.Builder.Prim;
+
                 Intent intent = new Intent(getApplicationContext(), GeneratingActivity.class);
                 startActivity(intent);
                 Random r = new Random();
@@ -98,6 +111,22 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
                 Log.v(TAG, "Revisit button pressed");
                 Toast.makeText(getApplicationContext(),"Revisit button pressed",Toast.LENGTH_SHORT).show();
                 // Code here executes on main thread after user presses button
+
+                if (MazeInfo.started == false) {
+                    MazeInfo.rooms = rooms;
+                    MazeInfo.size = size;
+
+                    // setting maze's builder algorithm according to selected builderAlgo string
+                    if (builderAlgo == "Boruvka")
+                        MazeInfo.builderAlgo = Order.Builder.Boruvka;
+                    else if (builderAlgo == "DFS")
+                        MazeInfo.builderAlgo = Order.Builder.DFS;
+                    else
+                        MazeInfo.builderAlgo = Order.Builder.Prim;
+                    Random r = new Random();
+                    MazeInfo.randomSeed = r.nextInt(500);
+                }
+
                 Intent intent = new Intent(getApplicationContext(), GeneratingActivity.class);
                 startActivity(intent);
             }

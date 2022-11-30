@@ -97,6 +97,10 @@ public class MazePanelPlayAnimation extends View {
         manual3 = Bitmap.createScaledBitmap(manual2, 700, 700, true);
         canvas = new Canvas(manual3);
         paint = new Paint();
+
+        // need to create a Path
+        // move to and line to method
+
     }
 
     @Override

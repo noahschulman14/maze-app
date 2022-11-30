@@ -25,6 +25,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import edu.wm.cs301.amazebynoahschulman.R;
+import edu.wm.cs301.amazebynoahschulman.generation.DefaultOrder;
+import edu.wm.cs301.amazebynoahschulman.generation.Factory;
+import edu.wm.cs301.amazebynoahschulman.generation.Maze;
+import edu.wm.cs301.amazebynoahschulman.generation.MazeFactory;
 
 /**
  * GeneratingActivity activity class - runs a background thread that
@@ -121,18 +125,47 @@ public class GeneratingActivity extends AppCompatActivity  {
      */
     private TextView shortly;
 
+    /**
+     * field variable for the maze order
+     */
+    private DefaultOrder order;
+
+    /**
+     * field variable for the maze factory
+     */
+    Factory mazeFactory;
+
+    /**
+     * field variable for maze object that will be passed to next activity
+     */
+    private Maze maze;
+
     class backgroundThread extends Thread {
         @Override
         public void run() {
             Log.v(TAG, "BACKGROUND THREAD RUNNING");
-            for (int i = 0; i <= 100; i++) {
+//            for (int i = 0; i <= 100; i++) {
+//                try {
+//                    Thread.sleep(50);
+//                    buildProgress.incrementProgressBy(1);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+            // UPDATE buildProgress VIA Order.getProgress()
+            while (order.getProgress() != 100) {
                 try {
                     Thread.sleep(50);
-                    buildProgress.incrementProgressBy(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                buildProgress.setProgress(order.getProgress());
             }
+            mazeFactory.waitTillDelivered();
+            // set maze to created maze
+            maze = order.getMaze();
+
+
             // ready boolean set to true once background maze generation is finished
             ready = true;
             // if manual radio button is selected and background thread is finished, move to PlayManuallyActivity
@@ -184,9 +217,20 @@ public class GeneratingActivity extends AppCompatActivity  {
         reminder2 = findViewById(R.id.textView7);
         shortly = findViewById(R.id.textView8);
 
+        driverRadioGroup = findViewById(R.id.radioGroup);
+
+
+
+        // here is where I create the maze
+        order = new DefaultOrder(MazeInfo.size, MazeInfo.builderAlgo, MazeInfo.rooms, MazeInfo.randomSeed);
+        mazeFactory = new MazeFactory();
+        mazeFactory.order(order);
+        // THEN START BACKGROUND THREAD THAT UPDATES ACTIVITY'S PROGRESS BAR BASED ON Order.UpdateProgress()
         startThread();
 
-        driverRadioGroup = findViewById(R.id.radioGroup);
+
+
+
     }
 
     // for driver radio button group

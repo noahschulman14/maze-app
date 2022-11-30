@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import edu.wm.cs301.amazebynoahschulman.gui.ColorTheme;
+//import edu.wm.cs301.amazebynoahschulman.gui.ColorTheme;
 import edu.wm.cs301.amazebynoahschulman.gui.MazeFileWriter;
 
 /**
@@ -122,7 +122,7 @@ public class Wall {
         partition = false;
         seen = false;
         // determine color
-        setColor(ColorTheme.getWallColor(distance, cc, getExtensionX()));
+        //setColor(ColorTheme.getWallColor(distance, cc, getExtensionX()));
         // all fields initialized
     }
 
