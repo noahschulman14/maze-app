@@ -224,6 +224,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     // back button functionality, moves to StateTitle
@@ -234,4 +236,17 @@ public class PlayManuallyActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
         startActivity(intent);
     }
+
+    public void startWinningActivity() {
+        Intent intent = new Intent(getApplicationContext(), WinningActivity.class);
+        // also passing the pathLength and distance2Exit to StateWinning
+        intent.putExtra("pathLength", pathLength);
+        intent.putExtra("distance2Exit", distanceToExit);
+        intent.putExtra("playAnimation", false);
+        // passing energy consumption to avoid errors in next state
+        intent.putExtra("energyConsumption", 99999999);
+        startActivity(intent);
+    }
+
+
 }

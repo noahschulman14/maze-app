@@ -3,6 +3,10 @@ package edu.wm.cs301.amazebynoahschulman.gui;
 
 import java.util.logging.Logger;
 
+import edu.wm.cs301.amazebynoahschulman.generation.CardinalDirection;
+import edu.wm.cs301.amazebynoahschulman.generation.Floorplan;
+import edu.wm.cs301.amazebynoahschulman.generation.Maze;
+
 
 /**
  * Class handles the user interaction
@@ -64,19 +68,19 @@ public class StatePlaying implements State {
      */
     private MazePanel panel;
     
-    /**
-     * Control is the context class of the State pattern.
-     * The reference is needed to pull some pieces of information
-     * plus switch control to the next state, which 
-     * is the maze generating state.
-     */
-    private Control control;
+//    /**
+//     * Control is the context class of the State pattern.
+//     * The reference is needed to pull some pieces of information
+//     * plus switch control to the next state, which
+//     * is the maze generating state.
+//     */
+//    private Control control;
 
 
     /**
      * Maze holds the main information on where walls are.
      */
-    Maze maze ; 
+    Maze maze ;
 
     public boolean showMaze;           // toggle switch to show overall maze on screen
     public boolean showSolution;       // toggle switch to show solution in overall maze on screen
@@ -102,7 +106,10 @@ public class StatePlaying implements State {
      * to make sure control variable has been set.
      * initial setting: false, start sets it to true.
      */
-    boolean started;  
+    boolean started;
+
+
+    PlayManuallyActivity playManuallyActivity;
   
     /**
      * Constructor uses default settings but does not deliver a fully operation instance,
@@ -113,7 +120,7 @@ public class StatePlaying implements State {
     	firstPersonView = null; // initialized in start method
     	mapView = null; // initialized in start method
     	panel = null; // provided by start method
-    	control = null; // provided by start method
+    	//control = null; // provided by start method
     	started = false; // method start has not been called yet
 
     	maze = null; // provided by set method
@@ -144,15 +151,14 @@ public class StatePlaying implements State {
      * If the panel is null, all drawing operations are skipped.
      * This mode of operation is useful for testing purposes, 
      * i.e., a dryrun of the game without the graphics part.
-     * @param controller provides access to the controller this state resides in
      * @param panel is part of the UI and visible on the screen, needed for drawing
      */
-    public void start(Control controller, MazePanel panel) {
+    public void start(MazePanel panel) {
     	assert null != maze : "StatePlaying.start: maze must exist!";
     	
         started = true;
         // keep the reference to the controller to be able to call method to switch the state
-        control = controller;
+       //control = controller;
         // keep the reference to the panel for drawing
         this.panel = panel;
         //
@@ -204,53 +210,51 @@ public class StatePlaying implements State {
         cd = CardinalDirection.East;
 	}
  
-	/**
-     * Switches the controller to the final screen
-     * @param pathLength gives the length of the path
-     */
-    public void switchFromPlayingToWinning(int pathLength) {
-    	// need to instantiate and configure the winning state
-        StateWinning currentState = new StateWinning();
-        
-        // The playing state needs 
-        // 1) the path length
-        // 
-        currentState.setPathLength(pathLength);
-        
-        LOGGER.fine("Control switches from playing to winning screen, game completed.");
-        
-        // update the context class with the new state
-        // and hand over control to the new state
-        control.setState(currentState);
-        currentState.start(control, panel);
-    }
-    
-    /**
-     * Switches the controller to the initial screen.
-     */
-    public void switchToTitle() {
-       	// need to instantiate and configure the title state
-        StateTitle currentState = new StateTitle();
-        
-        LOGGER.fine("Control switches from playing to title screen, game play interrupted.");
-        
-        // update the context class with the new state
-        // and hand over control to the new state
-
-        control.setState(currentState);
-        currentState.start(control, panel);
-    }
+//	/**
+//     * Switches the controller to the final screen
+//     * @param pathLength gives the length of the path
+//     */
+//    public void switchFromPlayingToWinning(int pathLength) {
+//    	// need to instantiate and configure the winning state
+//        StateWinning currentState = new StateWinning();
+//
+//        // The playing state needs
+//        // 1) the path length
+//        //
+//        currentState.setPathLength(pathLength);
+//
+//        LOGGER.fine("Control switches from playing to winning screen, game completed.");
+//
+//        // update the context class with the new state
+//        // and hand over control to the new state
+//        control.setState(currentState);
+//        currentState.start(control, panel);
+//    }
+//
+//    /**
+//     * Switches the controller to the initial screen.
+//     */
+//    public void switchToTitle() {
+//       	// need to instantiate and configure the title state
+//        StateTitle currentState = new StateTitle();
+//
+//        LOGGER.fine("Control switches from playing to title screen, game play interrupted.");
+//
+//        // update the context class with the new state
+//        // and hand over control to the new state
+//
+//        control.setState(currentState);
+//        currentState.start(control, panel);
+//    }
     
     /**
      * The method provides an appropriate response to user keyboard input. 
      * The control calls this method to communicate input and delegate its handling.
-     * Method requires {@link #start(Control, MazePanel) start} to be
-     * called before.
      * @param userInput provides the feature the user selected
      * @param value is not used in this state, exists only for consistency across State classes
      * @return false if not started yet otherwise true
      */
-    public boolean handleUserInput(UserInput userInput, int value) {
+    public boolean handleUserInput(Constants.UserInput userInput, int value) {
     	// user input too early, not sure how this could happen
         if (!started) {
         	LOGGER.info("Premature keyboard input:" + userInput + "with value " + value + ", ignored for mitigation");
@@ -271,7 +275,8 @@ public class StatePlaying implements State {
             // check termination, did we leave the maze?
             if (isOutside(px,py)) {
             	// TODO: provide actual path length
-                switchFromPlayingToWinning(0);
+                //switchFromPlayingToWinning(0);
+                playManuallyActivity.startWinningActivity();
             }
             break;
         case LEFT: // turn left
@@ -288,11 +293,8 @@ public class StatePlaying implements State {
             // check termination, did we leave the maze?
             if (isOutside(px,py)) {
             	// TODO: provide actual path length
-                switchFromPlayingToWinning(0);
+                playManuallyActivity.startWinningActivity();
             }
-            break;
-        case RETURNTOTITLE: // escape to title screen
-            switchToTitle();
             break;
         case JUMP: // make a step forward even through a wall
         	LOGGER.fine("Jump 1 step forward");
@@ -340,6 +342,8 @@ public class StatePlaying implements State {
     		printWarning();
     		return;
     	}
+        // NOTE::: MAYBE I NEED TO ERASE WHAT IS ON SCREEN WITH ADDBACKGROUND
+
     	// draw the first person view and the map view if wanted
     	firstPersonView.draw(panel, px, py, walkStep, angle, 
     			maze.getPercentageForDistanceToExit(px, py)) ;
@@ -348,7 +352,9 @@ public class StatePlaying implements State {
 					isInShowMazeMode(),isInShowSolutionMode()) ;
 		}
 		// update the screen with the buffer graphics
-        panel.update() ;
+        //panel.update() ;
+        // FOR NOW HAVE THIS CHANGED TO COMMIT (???)
+        panel.commit();
     }
 
     /**
@@ -516,7 +522,7 @@ public class StatePlaying implements State {
     	// in testing environments, there is sometimes no panel to draw on
     	// or the panel is unable to deliver a graphics object
     	// check this and quietly move on if drawing is impossible
-    	if ((panel == null || panel.getBufferGraphics() == null)) {
+    	if (panel == null) {
     		printWarning();
     		return;
     	}
@@ -529,9 +535,9 @@ public class StatePlaying implements State {
     	else {
     		// draw compass rose
     		cr.setCurrentDirection(cd);
-    		cr.paintComponent(panel.getBufferGraphics());
+    		cr.paintComponent(panel);
     	}
-    	panel.update();
+    	panel.commit();
     }
  
     /////////////////////// Methods for debugging ////////////////////////////////
