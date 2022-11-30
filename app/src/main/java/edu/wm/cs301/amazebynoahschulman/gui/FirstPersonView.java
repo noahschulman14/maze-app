@@ -529,7 +529,7 @@ public class FirstPersonView {
 			//gc.fillPolygon(xps, yps, 4);
 
 			// REPLACING WITH P7 MazePanel addPolygon method
-			mazePanel.addPolygon(xps, yps, 4);
+			mazePanel.addFilledPolygon(xps, yps, 4);
 
 
 			// for debugging purposes, code will draw a red line around polygon

@@ -107,15 +107,12 @@ public class MazePanel extends View implements P7PanelF22{
         //manual = BitmapFactory.decodeResource(getResources(), R.drawable.manual_test_image);
         //manual2 = manual.copy(Bitmap.Config.ARGB_8888, true);
         //manual3 = Bitmap.createScaledBitmap(manual2, 700, 700, true);
-        manual = Bitmap.createBitmap(1200, 1200, Bitmap.Config.ARGB_8888);
-        manual3 = Bitmap.createScaledBitmap(manual, 1500, 1500, true);
-        canvas = new Canvas();
+        manual = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888);
+        manual3 = Bitmap.createScaledBitmap(manual, 1000, 1000, true);
         paint = new Paint();
+        canvas = new Canvas(manual3);
 
-
-        internalCanvas = new Canvas(manual3);
-
-        testMyImage(internalCanvas);
+        //testMyImage(internalCanvas);
     }
 
     @Override
@@ -123,6 +120,12 @@ public class MazePanel extends View implements P7PanelF22{
         super.onDraw(canvas);
         //testMyImage(canvas);
         canvas.drawBitmap(manual3, 0, 0, paint);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(1000, 1000);
     }
 
     private void testMyImage(Canvas c) {
@@ -156,6 +159,9 @@ public class MazePanel extends View implements P7PanelF22{
         // printing a few lines
         setColor(Color.WHITE);
         addLine(1000, 600, 600, 200);
+
+        // adding an arc
+        addArc(200, 850, 400, 200, 2700, 200);
 
 
     }
@@ -365,7 +371,7 @@ public class MazePanel extends View implements P7PanelF22{
     @Override
     public void addArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
         // i THINK i set the paint to fill for this
-        paint.setStyle(Paint.Style.FILL);
+        paint.setStyle(Paint.Style.STROKE);
         // I THINK I USE FALSE BOOLEAN FOR USECENTER
         canvas.drawArc((float)x, (float)y, (float)x + (float)width, (float)y + (float)height, startAngle, arcAngle, false, paint);
     }

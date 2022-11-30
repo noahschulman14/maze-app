@@ -32,6 +32,10 @@ public class PlayManuallyActivity extends AppCompatActivity {
      */
     int pathLength = 0;
     /**
+     * Field variable to store shortest possible path length
+     */
+    int shortestPossiblePathLength;
+    /**
      * field variable to store distance to exit, initialized to 0
      */
     int distanceToExit = 0;
@@ -72,21 +76,34 @@ public class PlayManuallyActivity extends AppCompatActivity {
      */
     private SeekBar mapSizeSeekBar;
     /**
+     * mazePanel MazePanel field variable
+     */
+    private MazePanel mazePanel;
+    /**
      * boolean field variable, tells whether map is shown or not
      */
     private boolean showMap;
-    /**
-     * Field variable for the maze object
-     */
-    private Maze maze;
+
+
+    private StatePlaying statePlaying;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_manually);
 
+        // set the maze to one stored in MazeInfo
 
+        // create new StatePlaying object
+        statePlaying = new StatePlaying();
+        // set the maze, activity, and maze panel for statePlaying
+        mazePanel = findViewById(R.id.mazePanel);
+        statePlaying.setMaze(MazeInfo.maze);
+        statePlaying.setPlayManuallyActivity(this);
 
+        // set the shortest possible path length to be passed to winning screen
+        int[] startingCoords = MazeInfo.maze.getStartingPosition();
+        shortestPossiblePathLength = MazeInfo.maze.getDistanceToExit(startingCoords[0], startingCoords[1]);
 
         // this is for FORWARD BUTTON, increases path length by 1
         // IN P7 WILL MOVE ROBOT FORWARD
@@ -97,6 +114,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 Log.v(TAG, "FORWARD button pressed");
                 Toast.makeText(getApplicationContext(),"FORWARD button pressed",Toast.LENGTH_SHORT).show();
                 pathLength++;
+                statePlaying.handleUserInput(Constants.UserInput.UP, 1);
             }
         });
 
@@ -109,6 +127,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 Log.v(TAG, "JUMP button pressed");
                 Toast.makeText(getApplicationContext(),"JUMP button pressed",Toast.LENGTH_SHORT).show();
                 pathLength++;
+                statePlaying.handleUserInput(Constants.UserInput.JUMP, 1);
             }
         });
 
@@ -120,6 +139,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.v(TAG, "LEFT button pressed");
                 Toast.makeText(getApplicationContext(),"LEFT button pressed",Toast.LENGTH_SHORT).show();
+                statePlaying.handleUserInput(Constants.UserInput.LEFT, 1);
             }
         });
 
@@ -131,6 +151,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.v(TAG, "RIGHT button pressed");
                 Toast.makeText(getApplicationContext(),"RIGHT button pressed",Toast.LENGTH_SHORT).show();
+                statePlaying.handleUserInput(Constants.UserInput.RIGHT, 1);
             }
         });
 
@@ -162,10 +183,12 @@ public class PlayManuallyActivity extends AppCompatActivity {
                     Log.v(TAG, "SHOW MAP switch toggled ON");
                     Toast.makeText(getApplicationContext(),"SHOW MAP switch toggle ON",Toast.LENGTH_SHORT).show();
                     showMap = true;
+                    statePlaying.handleUserInput(Constants.UserInput.TOGGLEFULLMAP, 1);
                 } else {
                     Log.v(TAG, "SHOW MAP switch toggled OFF");
                     Toast.makeText(getApplicationContext(),"SHOW MAP switch toggled OFF",Toast.LENGTH_SHORT).show();
                     showMap = false;
+                    statePlaying.handleUserInput(Constants.UserInput.TOGGLEFULLMAP, 1);
                 }
             }
         });
@@ -180,10 +203,12 @@ public class PlayManuallyActivity extends AppCompatActivity {
                     Log.v(TAG, "SHOW SOLUTION switch toggled ON");
                     Toast.makeText(getApplicationContext(),"SHOW SOLUTION switch toggle ON",Toast.LENGTH_SHORT).show();
                     showMap = true;
+                    statePlaying.handleUserInput(Constants.UserInput.TOGGLELOCALMAP, 1);
                 } else {
                     Log.v(TAG, "SHOW SOLUTION switch toggled OFF");
                     Toast.makeText(getApplicationContext(),"SHOW SOLUTION switch toggled OFF",Toast.LENGTH_SHORT).show();
                     showMap = false;
+                    statePlaying.handleUserInput(Constants.UserInput.TOGGLELOCALMAP, 1);
                 }
             }
         });
@@ -198,10 +223,12 @@ public class PlayManuallyActivity extends AppCompatActivity {
                     Log.v(TAG, "SHOW VISIBLE WALLS switch toggled ON");
                     Toast.makeText(getApplicationContext(),"SHOW VISIBLE WALLS switch toggle ON",Toast.LENGTH_SHORT).show();
                     showMap = true;
+                    statePlaying.handleUserInput(Constants.UserInput.TOGGLESOLUTION, 1);
                 } else {
                     Log.v(TAG, "SHOW VISIBLE WALLS switch toggled OFF");
                     Toast.makeText(getApplicationContext(),"SHOW VISIBLE WALLS switch toggled OFF",Toast.LENGTH_SHORT).show();
                     showMap = false;
+                    statePlaying.handleUserInput(Constants.UserInput.TOGGLESOLUTION, 1);
                 }
             }
         });
@@ -224,6 +251,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
 
             }
         });
+
+        statePlaying.start(mazePanel);
 
 
     }

@@ -146,6 +146,13 @@ public class StatePlaying implements State {
     public void setMaze(Maze maze) {
         this.maze = maze;
     }
+
+
+    public void setPlayManuallyActivity(PlayManuallyActivity activity) {
+        playManuallyActivity = activity;
+    }
+
+
     /**
      * Start the actual game play by showing the playing screen.
      * If the panel is null, all drawing operations are skipped.
