@@ -14,6 +14,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import edu.wm.cs301.amazebynoahschulman.R;
+import edu.wm.cs301.amazebynoahschulman.generation.Maze;
 
 /**
  * PlayManuallyActivity class -
@@ -74,11 +75,19 @@ public class PlayManuallyActivity extends AppCompatActivity {
      * boolean field variable, tells whether map is shown or not
      */
     private boolean showMap;
+    /**
+     * Field variable for the maze object
+     */
+    private Maze maze;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_manually);
+
+
+
+
         // this is for FORWARD BUTTON, increases path length by 1
         // IN P7 WILL MOVE ROBOT FORWARD
         forwardButton = findViewById(R.id.forwardButton);

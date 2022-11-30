@@ -20,6 +20,8 @@ import androidx.core.content.ContextCompat;
 import org.w3c.dom.Attr;
 
 import edu.wm.cs301.amazebynoahschulman.R;
+import edu.wm.cs301.amazebynoahschulman.generation.Maze;
+import edu.wm.cs301.amazebynoahschulman.generation.MazeContainer;
 
 /**
  * MazePanel custom view class
@@ -51,6 +53,7 @@ public class MazePanel extends View implements P7PanelF22{
      * Field variable for the paint
      */
     private Paint paint;
+
 
     /**
      * MazePanel constructor 1
@@ -104,7 +107,7 @@ public class MazePanel extends View implements P7PanelF22{
         //manual = BitmapFactory.decodeResource(getResources(), R.drawable.manual_test_image);
         //manual2 = manual.copy(Bitmap.Config.ARGB_8888, true);
         //manual3 = Bitmap.createScaledBitmap(manual2, 700, 700, true);
-        manual = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_8888);
+        manual = Bitmap.createBitmap(1200, 1200, Bitmap.Config.ARGB_8888);
         manual3 = Bitmap.createScaledBitmap(manual, 1500, 1500, true);
         canvas = new Canvas();
         paint = new Paint();
@@ -133,7 +136,7 @@ public class MazePanel extends View implements P7PanelF22{
         addFilledOval(5, 5, 500, 500);
 
         // paint green ball
-        setColor(Color.GREEN);
+        setColor(115740);
         addFilledOval(10, 600, 300, 300);
 
         // paint yellow rectangle
@@ -164,6 +167,7 @@ public class MazePanel extends View implements P7PanelF22{
     @Override
     public void commit() {
         // *** DON'T KNOW WHAT TO PUT HERE RIGHT NOW ****
+        invalidate();
     }
 
     /**
@@ -400,5 +404,7 @@ public class MazePanel extends View implements P7PanelF22{
     public void setRenderingHint(P7RenderingHints hintKey, P7RenderingHints hintValue) {
         // ************* DON'T KNOW WHAT TO DO RIGHT NOW **************
     }
+
+
 }
 
