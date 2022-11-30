@@ -22,7 +22,7 @@ public class MazeInfo {
     /**
      * Field variable to store the driver type
      */
-    protected static String driver;
+    protected static RobotDriver driver;
     /**
      * Field variable to store the robot sensor configuration
      */

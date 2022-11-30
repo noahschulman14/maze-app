@@ -230,7 +230,12 @@ public class GeneratingActivity extends AppCompatActivity  {
         Log.v(TAG, driver + " radio button pressed");
         Toast.makeText(getApplicationContext(),driver + " radio button pressed",Toast.LENGTH_SHORT).show();
         if (driverRadioButton == findViewById(R.id.radio_wallfollower) || driverRadioButton == findViewById(R.id.radio_wizard)) {
-            MazeInfo.driver = driver;
+            if (driverRadioButton == findViewById(R.id.radio_wallfollower)) {
+                MazeInfo.driver = new WallFollower();
+            }
+            else {
+                MazeInfo.driver = new Wizard();
+            }
             // if automated driver is selected, display radio button group to select a robot sensor configuration
             robotConfigRadioGroup.setVisibility(View.VISIBLE);
             robotConfigText.setVisibility(View.VISIBLE);
