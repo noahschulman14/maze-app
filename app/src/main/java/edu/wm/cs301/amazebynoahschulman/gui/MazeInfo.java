@@ -1,5 +1,6 @@
 package edu.wm.cs301.amazebynoahschulman.gui;
 
+import edu.wm.cs301.amazebynoahschulman.generation.Maze;
 import edu.wm.cs301.amazebynoahschulman.generation.Order;
 
 /**
@@ -34,4 +35,8 @@ public class MazeInfo {
      * boolean field variable to tell if a maze has been generated yet
      */
     protected static boolean started = false;
+    /**
+     * Field variable to store the maze object
+     */
+    protected static Maze maze;
 }

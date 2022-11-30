@@ -135,23 +135,12 @@ public class GeneratingActivity extends AppCompatActivity  {
      */
     Factory mazeFactory;
 
-    /**
-     * field variable for maze object that will be passed to next activity
-     */
-    private Maze maze;
 
     class backgroundThread extends Thread {
         @Override
         public void run() {
             Log.v(TAG, "BACKGROUND THREAD RUNNING");
-//            for (int i = 0; i <= 100; i++) {
-//                try {
-//                    Thread.sleep(50);
-//                    buildProgress.incrementProgressBy(1);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            }
+
             // UPDATE buildProgress VIA Order.getProgress()
             while (order.getProgress() != 100) {
                 try {
@@ -163,7 +152,7 @@ public class GeneratingActivity extends AppCompatActivity  {
             }
             mazeFactory.waitTillDelivered();
             // set maze to created maze
-            maze = order.getMaze();
+            MazeInfo.maze = order.getMaze();
 
 
             // ready boolean set to true once background maze generation is finished
