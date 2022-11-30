@@ -268,7 +268,7 @@ public class Map {
 	
 	/**
 	 * Draw a horizontal line for the overall map
-	 * @param g the graphics object to draw on
+	 * @param mazePanel the graphics object to draw on
 	 * @param showMaze if the whole maze is to be drawn
 	 * @param x current x index
 	 * @param y current y index
@@ -516,7 +516,8 @@ public class Map {
 			//int ny2 = view_height-1-(neighbor[1]*map_scale + offy) - map_scale/2;
 			int nx2 = mapToCoordinateX(neighbor[0],offsetX) + mapScale/2;
 			int ny2 = mapToCoordinateY(neighbor[1],offsetY) - mapScale/2;
-			gc.drawLine(nx1, ny1, nx2, ny2);
+			//gc.drawLine(nx1, ny1, nx2, ny2);
+			mazePanel.addLine(nx1, ny1, nx2, ny2);
 			
 			// update loop variables for current position (sx,sy)
 			// and distance d for next iteration
