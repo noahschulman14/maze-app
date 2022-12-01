@@ -37,6 +37,8 @@
     <string name="showVisibleWalls">SHOW VISIBLE WALLS</string>
     <string name="mapSize">MAP SIZE</string>
     <string name="shortcut">SHORTCUT</string>
+    <string name="zoomIn">+</string>
+    <string name="zoomOut">-</string>
 
     // strings for PlayAnimationActivity
     <string name="remeiningEnergy">ENERGY</string>

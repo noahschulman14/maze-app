@@ -112,7 +112,7 @@ public class MazePanel extends View implements P7PanelF22{
         paint = new Paint();
         canvas = new Canvas(manual3);
 
-        testMyImage(canvas);
+        //testMyImage(canvas);
     }
 
     @Override
