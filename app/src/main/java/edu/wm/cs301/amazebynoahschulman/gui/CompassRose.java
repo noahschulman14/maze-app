@@ -101,7 +101,7 @@ public class CompassRose {
      * For compatibility with the JComponent class, this 
      * method's signature matches with the corresponding
      * one in JComponent.
-     * @param g The graphics object to draw on, actually must be a Graphics2D object.
+     * @param mazePanel The graphics object to draw on, actually must be a Graphics2D object.
      */
     public void paintComponent(MazePanel mazePanel) {
         

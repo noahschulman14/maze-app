@@ -252,7 +252,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
             }
         });
 
-        statePlaying.start(mazePanel);
+        //statePlaying.start(mazePanel);
 
 
     }
