@@ -80,10 +80,9 @@ public class PlayManuallyActivity extends AppCompatActivity {
      * mapSize TextView field variable
      */
     private TextView mapSize;
-
-
-
-
+    /**
+     * StatePlaying field variable
+     */
     private StatePlaying statePlaying;
 
     @Override
@@ -91,15 +90,12 @@ public class PlayManuallyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_manually);
 
-        // set the maze to one stored in MazeInfo
-
         // create new StatePlaying object
         statePlaying = new StatePlaying();
         // set the maze, activity, and maze panel for statePlaying
         mazePanel = findViewById(R.id.mazePanel);
         statePlaying.setMaze(MazeInfo.maze);
         statePlaying.setPlayManuallyActivity(this);
-
         statePlaying.start(mazePanel);
 
         // set the shortest possible path length to be passed to winning screen
@@ -152,7 +148,6 @@ public class PlayManuallyActivity extends AppCompatActivity {
             }
         });
 
-
         // this is for SHOW MAP SWITCH
         // in p7 will show map
         showMapSwitch = findViewById(R.id.showMapSwitch);
@@ -168,8 +163,6 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 }
             }
         });
-
-
 
         // this is for SHOW VISIBLE WALLS SWITCH
         // in p7 will show map's visible walls
@@ -231,9 +224,6 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 statePlaying.handleUserInput(Constants.UserInput.ZOOMIN, 1);
             }
         });
-
-
-
 
     }
 
