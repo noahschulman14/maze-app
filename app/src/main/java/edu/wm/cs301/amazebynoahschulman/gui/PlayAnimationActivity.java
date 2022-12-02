@@ -156,7 +156,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
         backOFF = findViewById(R.id.backOFF);
         leftON = findViewById(R.id.leftON);
         leftOFF = findViewById(R.id.leftOFF);
-        rightON = findViewById(R.id.leftON);
+        rightON = findViewById(R.id.rightON);
         rightOFF = findViewById(R.id.rightOFF);
 
 
@@ -235,6 +235,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 }
                 else {
                     // need to update energy on screen
+                    energyProgressBar.setProgress((int) MazeInfo.robot.getBatteryLevel());
                 }
             } catch (Exception e) {
                 go2Losing();
