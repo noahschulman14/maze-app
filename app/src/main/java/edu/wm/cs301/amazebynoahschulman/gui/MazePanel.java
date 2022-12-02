@@ -320,7 +320,9 @@ public class MazePanel extends View implements P7PanelF22{
      */
     @Override
     public void addLine(int startX, int startY, int endX, int endY) {
+        paint.setStrokeWidth(8);
         canvas.drawLine(startX, startY, endX, endY, paint);
+        paint.setStrokeWidth(1);
     }
 
     /**
@@ -386,7 +388,8 @@ public class MazePanel extends View implements P7PanelF22{
     @Override
     public void addMarker(float x, float y, String str) {
         // set paint type to stroke
-        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setTextSize(30);
         canvas.drawText(str, x, y, paint);
     }
 

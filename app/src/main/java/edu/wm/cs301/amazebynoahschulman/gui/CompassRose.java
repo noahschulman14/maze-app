@@ -4,6 +4,7 @@ package edu.wm.cs301.amazebynoahschulman.gui;
 
 
 import android.graphics.Color;
+import android.util.Log;
 
 import edu.wm.cs301.amazebynoahschulman.generation.CardinalDirection;
 
@@ -23,8 +24,8 @@ public class CompassRose {
 	
 	
 	// fixed configuration for arms
-    private static final float MAIN_LENGTH = 0.95f;
-    private static final float MAIN_WIDTH = 0.15f;
+    private static final float MAIN_LENGTH =  0.95f;
+    private static final float MAIN_WIDTH =  0.15f;
     
     // fixed configuration for circle surrounding arms
     private static final int CIRCLE_BORDER = 2;
@@ -56,12 +57,12 @@ public class CompassRose {
     /**
      * Construct a compass rose with the default settings.
      */
-    public CompassRose() {}
 
 
-	public CompassRose(MazePanel mazePanel) {
-		this(0.9, 1.7, mazePanel);
+	public CompassRose() {
+		this(0.9, 1.7);
 	}
+
      
     /**
      * Construct a compass rose with the specified settings.
@@ -69,12 +70,11 @@ public class CompassRose {
      * @param scaler        The scaler of the rose.  The bordering circle will be this portion of the component dimensions.
      * @param markerRadius  The radius for the marker positions (N/E/S/W), or NaN for no markers.  A value greater than one
      *                      will position the markers outside of the bordering circle.
-     * @param mazePanel    The font used for the markers.
      */
-    public CompassRose(double scaler, double markerRadius, MazePanel mazePanel) {
+    public CompassRose(double scaler, double markerRadius) {
         this.scaler = scaler;
         this.markerRadius = markerRadius;
-        this.mazePanel = mazePanel;
+
     }
     /**
      * Sets the center position for the compass rose and its size
@@ -131,7 +131,7 @@ public class CompassRose {
          */
         drawBackground(mazePanel);
         drawArms(mazePanel, armLength, armWidth);
-        drawBorderCircle(mazePanel, width); // note: not currently visible due to color settings
+        //drawBorderCircle(mazePanel, width); // note: not currently visible due to color settings
         drawDirectionMarker(mazePanel, width);
     }
 
@@ -156,7 +156,7 @@ public class CompassRose {
         // use the same color for all arms
         //g2.setColor(ColorTheme.getColor(MazeColors.COMPASSROSE_MAIN_COLOR));
 		// MAIN COMPASS ROSE COLOR - USING GREEN
-		mazePanel.setColor(Color.GREEN);
+		mazePanel.setColor(Color.MAGENTA);
 
         // draw each arm
         drawArmNorth(mazePanel, length, width, x, y);
@@ -305,26 +305,26 @@ public class CompassRose {
 		// currendDir South is going upward on the map
 		// COMPASS ROSE COLOR CURRENT DIRECTION : COMPASSROSE COLOR MARKER DEFAULT
 		mazePanel.setColor((CardinalDirection.South == currentDir) ?
-				Color.BLACK :
-					Color.YELLOW);
-		drawMarker(mazePanel, centerX, centerY - offset, "N");
+				Color.RED :
+					Color.BLACK);
+		drawMarker(mazePanel, centerX - 10, centerY - 60 , "N");
 
 		mazePanel.setColor((CardinalDirection.East == currentDir) ?
-				Color.BLACK :
-				Color.YELLOW);
-		drawMarker(mazePanel, centerX + offset, centerY, "E");
+				Color.RED :
+				Color.BLACK);
+		drawMarker(mazePanel, centerX + 60, centerY + 10, "E");
 
 		// WARNING: north south confusion
 		// currendDir North is going downwards on the map
 		mazePanel.setColor((CardinalDirection.North == currentDir) ?
-				Color.BLACK :
-				Color.YELLOW);
-		drawMarker(mazePanel, centerX, centerY + offset, "S");
+				Color.RED :
+				Color.BLACK);
+		drawMarker(mazePanel, centerX - 10, centerY + 80, "S");
 
 		mazePanel.setColor((CardinalDirection.West == currentDir) ?
-				Color.BLACK :
-				Color.YELLOW);
-		drawMarker(mazePanel, centerX - offset, centerY, "W");
+				Color.RED :
+				Color.BLACK);
+		drawMarker(mazePanel, centerX - 80, centerY + 10, "W");
 
 	}
  
@@ -346,6 +346,5 @@ public class CompassRose {
 //
 //        g2.drawGlyphVector(gv, x, y);
 		mazePanel.addMarker(x, y, str);
-        
     }
 }

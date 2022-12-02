@@ -60,10 +60,6 @@ public class PlayAnimationActivity extends AppCompatActivity {
      */
     private Switch showMapSwitch;
     /**
-     * Boolean field variable to tell whether map is shown
-     */
-    private boolean showMap;
-    /**
      * mapSizeSeekBar SeekBar field variable
      */
     private SeekBar mapSizeSeekBar;
@@ -147,11 +143,9 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 if (isChecked) {
                     Log.v(TAG, "SHOW MAP switch toggled ON");
                     Toast.makeText(getApplicationContext(),"SHOW MAP switch toggle ON",Toast.LENGTH_SHORT).show();
-                    showMap = true;
                 } else {
                     Log.v(TAG, "SHOW MAP switch toggled OFF");
                     Toast.makeText(getApplicationContext(),"SHOW MAP switch toggled OFF",Toast.LENGTH_SHORT).show();
-                    showMap = false;
                 }
             }
         });

@@ -196,13 +196,13 @@ public class StatePlaying implements State {
 	protected void startDrawer() {
 		cr = new CompassRose();
 		cr.setPositionAndSize(Constants.VIEW_WIDTH/2,
-				(int)(0.1*Constants.VIEW_HEIGHT),35);
+				(int)(0.1*Constants.VIEW_HEIGHT),100);
 
 		firstPersonView = new FirstPersonView(Constants.VIEW_WIDTH,
 				Constants.VIEW_HEIGHT, Constants.MAP_UNIT,
 				Constants.STEP_SIZE, seenCells, maze.getRootnode()) ;
 		
-		mapView = new Map(seenCells, 15, maze) ;
+		mapView = new Map(seenCells, 90, maze) ;
 		// draw the initial screen for this state
 		draw(cd.angle(), 0);
 	}
