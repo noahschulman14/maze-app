@@ -320,7 +320,7 @@ public class MazePanel extends View implements P7PanelF22{
      */
     @Override
     public void addLine(int startX, int startY, int endX, int endY) {
-        paint.setStrokeWidth(8);
+        paint.setStrokeWidth(6);
         canvas.drawLine(startX, startY, endX, endY, paint);
         paint.setStrokeWidth(1);
     }

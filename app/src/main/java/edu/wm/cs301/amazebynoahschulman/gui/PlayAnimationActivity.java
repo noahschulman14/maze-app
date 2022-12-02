@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -70,7 +71,13 @@ public class PlayAnimationActivity extends AppCompatActivity {
      */
     private SeekBar animationSpeedSeekBar;
 
+    private Button zoomOutButton;
+
+    private Button zoomInButton;
+
     private ProgressBar energyProgressBar;
+
+    private TextView mapSizeTextView;
 
     private StatePlaying statePlaying;
 
@@ -91,7 +98,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
     private ImageView rightON;
     private ImageView rightOFF;
 
-    private int[] speeds = {1050, 1000, 800, 600, 400, 200, 100, 50};
+    private int[] speeds = {1050, 1000, 800, 600, 400, 200, 100, 50, 20};
     private int speed = 400;
 
 
@@ -177,7 +184,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
         });
 
 
-
+        mapSizeTextView = findViewById(R.id.mapSizeTextView);
         // this is for SHOW MAP switch:
         showMapSwitch = (Switch) findViewById(R.id.showMapSwitch);
         showMapSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -187,11 +194,18 @@ public class PlayAnimationActivity extends AppCompatActivity {
                     statePlaying.handleUserInput(Constants.UserInput.TOGGLELOCALMAP, 1);
                     statePlaying.handleUserInput(Constants.UserInput.TOGGLEFULLMAP, 1);
                     statePlaying.handleUserInput(Constants.UserInput.TOGGLESOLUTION, 1);
+                    zoomInButton.setVisibility(View.VISIBLE);
+                    zoomOutButton.setVisibility(View.VISIBLE);
+                    mapSizeTextView.setVisibility(View.VISIBLE);
                 } else {
                     Log.v(TAG, "SHOW MAP switch toggled OFF");
                     statePlaying.handleUserInput(Constants.UserInput.TOGGLELOCALMAP, 1);
                     statePlaying.handleUserInput(Constants.UserInput.TOGGLEFULLMAP, 1);
                     statePlaying.handleUserInput(Constants.UserInput.TOGGLESOLUTION, 1);
+                    zoomInButton.setVisibility(View.INVISIBLE);
+                    zoomOutButton.setVisibility(View.INVISIBLE);
+                    mapSizeTextView.setVisibility(View.INVISIBLE);
+
                 }
             }
         });
@@ -212,6 +226,26 @@ public class PlayAnimationActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+            }
+        });
+
+        // this is for zoomOut BUTTON, increases path length by 1
+        zoomOutButton = findViewById(R.id.zoomOutButton);
+        zoomOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.v(TAG, "zoomOut button pressed");
+                statePlaying.handleUserInput(Constants.UserInput.ZOOMOUT, 1);
+            }
+        });
+
+        // this is for zoomIn BUTTON, increases path length by 1
+        zoomInButton = findViewById(R.id.zoomInButton);
+        zoomInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.v(TAG, "zoomIn button pressed");
+                statePlaying.handleUserInput(Constants.UserInput.ZOOMIN, 1);
             }
         });
 
@@ -278,7 +312,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
         // also passing the pathLength and distance2Exit to StateWinning
         intent.putExtra("pathLength", MazeInfo.driver.getPathLength());
         intent.putExtra("distance2Exit", distanceToExit);
-        intent.putExtra("energyConsumption", MazeInfo.driver.getEnergyConsumption());
+        intent.putExtra("energyConsumption", (int)MazeInfo.driver.getEnergyConsumption());
         intent.putExtra("playAnimation", true);
         startActivity(intent);
         finish();
