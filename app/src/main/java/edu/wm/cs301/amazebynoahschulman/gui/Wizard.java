@@ -1,8 +1,5 @@
 package edu.wm.cs301.amazebynoahschulman.gui;
 
-import java.util.Arrays;
-import java.util.logging.Logger;
-
 import edu.wm.cs301.amazebynoahschulman.generation.CardinalDirection;
 import edu.wm.cs301.amazebynoahschulman.generation.Maze;
 
@@ -47,6 +44,18 @@ public class Wizard implements RobotDriver {
 	 * Field value to keep track of the Wizard's path length.
 	 */
 	int pathLength;
+
+	/**
+	 * Field variable that stores the amount of time (4 seconds) between failure for the robot's unreliable sensors
+	 * multiplied by infinity because the thread.sleep() method takes in milliseconds as a parameter.
+	 */
+	int meanTimeBetweenFailures = 4 * 1000;
+
+	/**
+	 * Field variable that stores the amount of time (2 seconds) to repair one of the robot's unreliable sensors
+	 * multiplied by infinity because the thread.sleep() method takes in milliseconds as a parameter.
+	 */
+	int meanTimeToRepair  = 2 * 1000;
 	
 
 	/**
@@ -266,6 +275,63 @@ public class Wizard implements RobotDriver {
 	public int getPathLength() {
 		// TODO Auto-generated method stub
 		return pathLength;
+	}
+
+	/**
+	 * Starts unreliable sensors background threads
+	 */
+	@Override
+	public void startUnreliableSensors() {
+
+		// store boolean value of whether sensor is operational for each cell
+		// we know that a sensor is unreliable if that boolean is originally set to 0
+		boolean forward = theRobot.getSensor(Robot.Direction.FORWARD).isOperational();
+		boolean backward = theRobot.getSensor(Robot.Direction.BACKWARD).isOperational();
+		boolean left = theRobot.getSensor(Robot.Direction.LEFT).isOperational();
+		boolean right = theRobot.getSensor(Robot.Direction.RIGHT).isOperational();
+
+
+		// if forward sensor is unreliable, start thread
+		// if any of the other sensors whose thread haven't been started yet are unreliable, wait 1.3 seconds
+		if (forward == false) {
+			theRobot.startFailureAndRepairProcess(Robot.Direction.FORWARD, meanTimeBetweenFailures, meanTimeToRepair);
+			if ((backward == false) || (left == false) || (right == false)) {
+				try {
+					Thread.sleep(1300);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		// if backward sensor is unreliable, start thread
+		// if any of the other sensors whose thread haven't been started yet are unreliable, wait 1.3 seconds
+		if (backward == false) {
+			theRobot.startFailureAndRepairProcess(Robot.Direction.BACKWARD, meanTimeBetweenFailures, meanTimeToRepair);
+			if ((left == false) || (right == false)) {
+				try {
+					Thread.sleep(1300);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		// if left sensor is unreliable, start thread
+		// if any of the other sensors whose thread haven't been started yet are unreliable, wait 1.3 seconds
+		if (left == false) {
+			theRobot.startFailureAndRepairProcess(Robot.Direction.LEFT, meanTimeBetweenFailures, meanTimeToRepair);
+			if (right == false) {
+				try {
+					Thread.sleep(1300);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		if (right == false) {
+			theRobot.startFailureAndRepairProcess(Robot.Direction.RIGHT, meanTimeBetweenFailures, meanTimeToRepair);
+		}
 	}
 
 }

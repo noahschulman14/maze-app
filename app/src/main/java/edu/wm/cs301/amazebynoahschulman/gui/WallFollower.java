@@ -181,7 +181,7 @@ public class WallFollower implements RobotDriver {
 	/**
 	 * Starts unreliable sensors background threads
 	 */
-	protected void startUnreliableSensors() {
+	public void startUnreliableSensors() {
 		
 		// store boolean value of whether sensor is operational for each cell
 		// we know that a sensor is unreliable if that boolean is originally set to 0

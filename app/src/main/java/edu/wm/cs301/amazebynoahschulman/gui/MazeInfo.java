@@ -25,6 +25,14 @@ public class MazeInfo {
      */
     protected static RobotDriver driver;
     /**
+     * boolean Field variable for driver type
+     */
+    protected static boolean wizard;
+    /**
+     * Field variable to store unreliable robot
+     */
+    protected static UnreliableRobot robot = new UnreliableRobot();
+    /**
      * Field variable to store forward sensor
      */
     protected static DistanceSensor sensorForward;

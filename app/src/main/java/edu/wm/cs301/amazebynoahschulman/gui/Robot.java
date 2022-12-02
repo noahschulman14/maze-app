@@ -74,13 +74,17 @@ public interface Robot {
 	 * and for initialization purposes. The controller serves as the main source of information
 	 * for the robot about the current position, the presence of walls, the reaching of an exit.
 	 * The controller is assumed to be in the playing state.
-	 * @param controller is the communication partner for robot
-	 * @throws IllegalArgumentException if controller is null, 
+	 * @throws IllegalArgumentException if controller is null,
 	 * or if controller is not in playing state, 
 	 * or if controller does not have a maze
 	 */
 	//void setController(Control controller);
-	/**
+
+    //void setController();
+
+    void setStatePlaying(StatePlaying statePlaying1);
+
+    /**
 	 * Adds a distance sensor to the robot such that it measures in the given direction.
 	 * This method is used when a robot is initially configured to get ready for operation.
 	 * The point of view is that one mounts a sensor on the robot such that the robot

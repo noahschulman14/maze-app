@@ -98,6 +98,9 @@ public class PlayManuallyActivity extends AppCompatActivity {
         statePlaying.setPlayManuallyActivity(this);
         statePlaying.start(mazePanel);
 
+
+
+
         // set the shortest possible path length to be passed to winning screen
         int[] startingCoords = MazeInfo.maze.getStartingPosition();
         distanceToExit = MazeInfo.maze.getDistanceToExit(startingCoords[0], startingCoords[1]);

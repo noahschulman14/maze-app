@@ -110,6 +110,8 @@ public class StatePlaying implements State {
 
 
     PlayManuallyActivity playManuallyActivity;
+
+    PlayAnimationActivity playAnimationActivity;
   
     /**
      * Constructor uses default settings but does not deliver a fully operation instance,
@@ -150,6 +152,10 @@ public class StatePlaying implements State {
 
     public void setPlayManuallyActivity(PlayManuallyActivity activity) {
         playManuallyActivity = activity;
+    }
+
+    public void setPlayAnimationActivity(PlayAnimationActivity activity) {
+        playAnimationActivity = activity;
     }
 
 
