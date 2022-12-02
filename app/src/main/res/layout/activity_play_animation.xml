@@ -171,23 +171,6 @@
         tools:layout_editor_absoluteX="177dp"
         tools:layout_editor_absoluteY="615dp" />
 
-    <Button
-        android:id="@+id/pauseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pause"
-        android:visibility="invisible"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="533dp" />
-
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/start1"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="533dp" />
-
     <SeekBar
         android:id="@+id/animationSpeedSeekBar"
         android:layout_width="363dp"
@@ -212,6 +195,17 @@
         android:layout_height="375dp"
         tools:layout_editor_absoluteX="18dp"
         tools:layout_editor_absoluteY="152dp"></edu.wm.cs301.amazebynoahschulman.gui.MazePanel>
+
+    <ToggleButton
+        android:id="@+id/playPauseToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#673AB7"
+        android:text="ToggleButton"
+        android:textOff="@string/start1"
+        android:textOn="@string/pause"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="535dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

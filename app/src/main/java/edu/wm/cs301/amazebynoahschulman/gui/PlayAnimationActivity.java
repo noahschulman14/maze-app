@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import edu.wm.cs301.amazebynoahschulman.R;
 import edu.wm.cs301.amazebynoahschulman.generation.Maze;
@@ -42,13 +43,9 @@ public class PlayAnimationActivity extends AppCompatActivity {
      */
     int energyConsumption = 0;
     /**
-     * startButton Button field variable
+     * play and pause ToggleButton field variable
      */
-    private Button startButton;
-    /**
-     * pauseButton Button field variable
-     */
-    private Button pauseButton;
+    private ToggleButton playPauseToggleButton;
 
     //P6
     /**
@@ -128,7 +125,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
         // start failure and repair process
         MazeInfo.driver.startUnreliableSensors();
         // start animation
-        handler.post(drive2exit);
+        //handler.post(drive2exit);
         statePlaying.handleUserInput(Constants.UserInput.TOGGLELOCALMAP, 1);
         statePlaying.handleUserInput(Constants.UserInput.TOGGLEFULLMAP, 1);
         statePlaying.handleUserInput(Constants.UserInput.TOGGLESOLUTION, 1);
@@ -141,8 +138,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
         distanceToExit = MazeInfo.maze.getDistanceToExit(startingCoords[0], startingCoords[1]) - 1;
 
         // initialize start and stop buttons
-        startButton = findViewById(R.id.startButton);
-        pauseButton = findViewById(R.id.pauseButton);
+        playPauseToggleButton = findViewById(R.id.playPauseToggleButton);
 
         // initialize sensor images
         frontON = findViewById(R.id.frontON);
@@ -156,63 +152,22 @@ public class PlayAnimationActivity extends AppCompatActivity {
 
 
 
-        // START BUTTON
-        // on press becomes invisible, makes pause button visible
-        startButton.setOnClickListener(new View.OnClickListener() {
+        playPauseToggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.v(TAG, "START button pressed");
-                Toast.makeText(getApplicationContext(),"START button pressed",Toast.LENGTH_SHORT).show();
-                startButton.setVisibility(View.INVISIBLE);
-                pauseButton.setVisibility(View.VISIBLE);
+
+                if (playPauseToggleButton.isChecked()) {
+                    // start background thread if set to start
+                    handler.post(drive2exit);
+                }
+                else {
+                    // stop background animation if set to pause
+                    handler.removeCallbacks(drive2exit);
+                }
             }
         });
 
-        // PAUSE BUTTON
-        // on press become invisible, makes start button visible
-        pauseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.v(TAG, "PAUSE button pressed");
-                Toast.makeText(getApplicationContext(),"PAUSE button pressed",Toast.LENGTH_SHORT).show();
-                pauseButton.setVisibility(View.INVISIBLE);
-                startButton.setVisibility(View.VISIBLE);
-            }
-        });
 
-        // GO2WINNING BUTTON
-        go2WinningButton = findViewById(R.id.go2WinningButton);
-        go2WinningButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.v(TAG, "GO2WINNING button pressed");
-                Toast.makeText(getApplicationContext(),"GO2WINNING button pressed",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), WinningActivity.class);
-                // also passing the pathLength and distance2Exit to StateWinning
-                intent.putExtra("pathLength", pathLength);
-                intent.putExtra("distance2Exit", distanceToExit);
-                intent.putExtra("energyConsumption", energyConsumption);
-                intent.putExtra("playAnimation", true);
-                startActivity(intent);
-            }
-        });
-
-        // GO2LOSING BUTTON
-        go2LosingButton = findViewById(R.id.go2LosingButton);
-        go2LosingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.v(TAG, "GO2LOSING button pressed");
-                Toast.makeText(getApplicationContext(),"GO2LOSING button pressed",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), LosingActivity.class);
-                // also passing the pathLength and distance2Exit to StateWinning
-                intent.putExtra("pathLength", pathLength);
-                intent.putExtra("distance2Exit", distanceToExit);
-                intent.putExtra("energyConsumption", energyConsumption);
-                intent.putExtra("playAnimation", true);
-                startActivity(intent);
-            }
-        });
 
         // this is for SHOW MAP switch:
         showMapSwitch = (Switch) findViewById(R.id.showMapSwitch);
@@ -232,23 +187,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
             }
         });
 
-        // this is for map size seek bar
-        mapSizeSeekBar = findViewById(R.id.mapSizeSeekBar);
-        mapSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
 
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                Log.v(TAG, "MAP SIZE SEEKBAR touched");
-                Toast.makeText(getApplicationContext(),"MAP SIZE SEEKBAR touched",Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
 
         // this is for ANIMATION SPEED seek bar
         animationSpeedSeekBar = findViewById(R.id.animationSpeedSeekBar);
