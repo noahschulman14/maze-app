@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -69,6 +70,8 @@ public class PlayAnimationActivity extends AppCompatActivity {
      */
     private SeekBar animationSpeedSeekBar;
 
+    private ProgressBar energyProgressBar;
+
     private StatePlaying statePlaying;
 
     private MazePanel mazePanel;
@@ -87,6 +90,9 @@ public class PlayAnimationActivity extends AppCompatActivity {
     private ImageView leftOFF;
     private ImageView rightON;
     private ImageView rightOFF;
+
+    private int[] speeds = {1050, 1000, 800, 600, 400, 200, 100, 50};
+    private int speed = 400;
 
 
 
@@ -139,6 +145,9 @@ public class PlayAnimationActivity extends AppCompatActivity {
 
         // initialize start and stop buttons
         playPauseToggleButton = findViewById(R.id.playPauseToggleButton);
+
+        // initialize energy progress bar
+        energyProgressBar = findViewById(R.id.energyProgressBar);
 
         // initialize sensor images
         frontON = findViewById(R.id.frontON);
@@ -194,12 +203,11 @@ public class PlayAnimationActivity extends AppCompatActivity {
         animationSpeedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
+                speed = speeds[i];
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 Log.v(TAG, "ANIMATION SPEED SEEKBAR touched");
-                Toast.makeText(getApplicationContext(),"ANIMATION SPEED SEEKBAR touched",Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
@@ -235,16 +243,13 @@ public class PlayAnimationActivity extends AppCompatActivity {
 
             // THIS IS HOW THE ANIMATION SPEED WORKS
             // wait an amount of time before calling background thread again
-            handler.postDelayed(drive2exit, 400);
+            handler.postDelayed(drive2exit, speed);
         }
     }
 
 
 
     private void go2Winning() {
-        // PUT IN SOMETHING TO STOP BACKGROUND THREAD????
-
-
         MazeInfo.robot.stopFailureAndRepairProcess(Robot.Direction.FORWARD);
         MazeInfo.robot.stopFailureAndRepairProcess(Robot.Direction.LEFT);
         MazeInfo.robot.stopFailureAndRepairProcess(Robot.Direction.RIGHT);
@@ -288,9 +293,9 @@ public class PlayAnimationActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Log.v(TAG, "BACK button pressed");
-        Toast.makeText(getApplicationContext(),"BACK button pressed",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private void updateSensorImage() {

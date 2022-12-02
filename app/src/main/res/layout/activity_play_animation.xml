@@ -154,11 +154,12 @@
         tools:layout_editor_absoluteY="751dp" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/energyProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="363dp"
         android:layout_height="wrap_content"
         android:max="3500"
+        android:progress="3500"
         tools:layout_editor_absoluteX="24dp"
         tools:layout_editor_absoluteY="633dp" />
 
@@ -175,8 +176,8 @@
         android:id="@+id/animationSpeedSeekBar"
         android:layout_width="363dp"
         android:layout_height="wrap_content"
-        android:max="100"
-        android:progress="50"
+        android:max="8"
+        android:progress="4"
         tools:layout_editor_absoluteX="24dp"
         tools:layout_editor_absoluteY="688dp" />
 
