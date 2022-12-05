@@ -2,7 +2,9 @@ package edu.wm.cs301.amazebynoahschulman.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -82,26 +84,39 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
 
                 // Code here executes on main thread after user presses button
 
-                // setting maze's builder algorithm according to selected builderAlgo string
-                MazeInfo.rooms = rooms;
-                MazeInfo.size = size;
 
-                // setting maze's builder algorithm according to selected builderAlgo string
-                if (builderAlgo.equals("Boruvka")) {
-                    MazeInfo.builderAlgo = Order.Builder.Boruvka;
-                }
-                if (builderAlgo.equals("Prim")) {
-                    MazeInfo.builderAlgo = Order.Builder.Prim;
-                }
-                if (builderAlgo.equals("DFS")) {
-                    MazeInfo.builderAlgo = Order.Builder.DFS;
-                }
+                Random r = new Random();
+                MazeInfo.randomSeed = r.nextInt(500);
+
+                // saving maze config settings in SharedPreferences
+                //SharedPreferences sharedPreferences = AMazeActivity.this.getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("size", size);
+                editor.putBoolean("rooms", rooms);
+                editor.putString("builderAlgo", builderAlgo);
+                editor.putInt("randomSeed", MazeInfo.randomSeed);
+                editor.putBoolean("started", true);
+                editor.apply();
+
+//                MazeInfo.rooms = rooms;
+//                MazeInfo.size = size;
+//
+//                // setting maze's builder algorithm according to selected builderAlgo string
+//                if (builderAlgo.equals("Boruvka")) {
+//                    MazeInfo.builderAlgo = Order.Builder.Boruvka;
+//                }
+//                if (builderAlgo.equals("Prim")) {
+//                    MazeInfo.builderAlgo = Order.Builder.Prim;
+//                }
+//                if (builderAlgo.equals("DFS")) {
+//                    MazeInfo.builderAlgo = Order.Builder.DFS;
+//                }
 
 
                 Intent intent = new Intent(getApplicationContext(), GeneratingActivity.class);
                 startActivity(intent);
-                Random r = new Random();
-                MazeInfo.randomSeed = r.nextInt(500);
+
             }
         });
 
@@ -111,23 +126,20 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
             public void onClick(View v) {
                 Log.v(TAG, "Revisit button pressed");
                 // Code here executes on main thread after user presses button
-
-                if (MazeInfo.started == false) {
-                    MazeInfo.rooms = rooms;
-                    MazeInfo.size = size;
-
-                    // setting maze's builder algorithm according to selected builderAlgo string
-                    if (builderAlgo.equals("Boruvka")) {
-                        MazeInfo.builderAlgo = Order.Builder.Boruvka;
-                    }
-                    if (builderAlgo.equals("Prim")) {
-                        MazeInfo.builderAlgo = Order.Builder.Prim;
-                    }
-                    if (builderAlgo.equals("DFS")) {
-                        MazeInfo.builderAlgo = Order.Builder.DFS;
-                    }
+                SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+                if (sharedPreferences.getBoolean("started", false) == false) {
                     Random r = new Random();
                     MazeInfo.randomSeed = r.nextInt(500);
+
+                    // saving maze config settings in SharedPreferences
+                    //SharedPreferences sharedPreferences = AMazeActivity.this.getPreferences(Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("size", size);
+                    editor.putBoolean("rooms", rooms);
+                    editor.putString("builderAlgo", builderAlgo);
+                    editor.putInt("randomSeed", MazeInfo.randomSeed);
+                    editor.putBoolean("started", true);
+                    editor.apply();
                 }
 
                 Intent intent = new Intent(getApplicationContext(), GeneratingActivity.class);

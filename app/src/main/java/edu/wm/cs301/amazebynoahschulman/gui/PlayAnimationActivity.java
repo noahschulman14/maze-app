@@ -330,6 +330,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
         Log.v(TAG, "BACK button pressed");
         Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
         startActivity(intent);
+        handler.removeCallbacks(drive2exit);
         finish();
     }
 

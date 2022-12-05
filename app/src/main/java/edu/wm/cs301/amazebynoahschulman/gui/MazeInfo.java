@@ -1,6 +1,5 @@
 package edu.wm.cs301.amazebynoahschulman.gui;
 
-import edu.wm.cs301.amazebynoahschulman.generation.Distance;
 import edu.wm.cs301.amazebynoahschulman.generation.Maze;
 import edu.wm.cs301.amazebynoahschulman.generation.Order;
 

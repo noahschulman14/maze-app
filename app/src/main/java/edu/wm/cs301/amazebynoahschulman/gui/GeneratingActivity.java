@@ -5,7 +5,9 @@ import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -29,6 +31,7 @@ import edu.wm.cs301.amazebynoahschulman.generation.DefaultOrder;
 import edu.wm.cs301.amazebynoahschulman.generation.Factory;
 import edu.wm.cs301.amazebynoahschulman.generation.Maze;
 import edu.wm.cs301.amazebynoahschulman.generation.MazeFactory;
+import edu.wm.cs301.amazebynoahschulman.generation.Order;
 
 /**
  * GeneratingActivity activity class - runs a background thread that
@@ -136,6 +139,7 @@ public class GeneratingActivity extends AppCompatActivity  {
     Factory mazeFactory;
 
 
+
     class backgroundThread extends Thread {
         @Override
         public void run() {
@@ -209,6 +213,35 @@ public class GeneratingActivity extends AppCompatActivity  {
         driverRadioGroup = findViewById(R.id.radioGroup);
 
         Toast.makeText(getApplicationContext(), "test" + MazeInfo.builderAlgo ,Toast.LENGTH_SHORT).show();
+
+
+        // getting maze config info from SharedPreferences
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        // getting builderAlgo
+        if (sharedPreferences.getString("builderAlgo", "Boruvka").equals("Boruvka")) {
+                    MazeInfo.builderAlgo = Order.Builder.Boruvka;
+                }
+        if (sharedPreferences.getString("builderAlgo", "Boruvka").equals("Prim")) {
+                    MazeInfo.builderAlgo = Order.Builder.Prim;
+                }
+        if (sharedPreferences.getString("builderAlgo", "Boruvka").equals("DFS")) {
+                    MazeInfo.builderAlgo = Order.Builder.DFS;
+                }
+
+        // getting size
+        MazeInfo.size = sharedPreferences.getInt("size", 0);
+        // getting rooms
+        MazeInfo.rooms = sharedPreferences.getBoolean("rooms", false);
+        // getting random seed
+        MazeInfo.randomSeed = sharedPreferences.getInt("randomSeed", 20);
+
+        Log.v(TAG, "ROOMS IS SELECTED TO " + MazeInfo.rooms);
+        Log.v(TAG, "SIZE IS SELECTED TO " + MazeInfo.size);
+        Log.v(TAG, "RANDOM SEED IS SELECTED TO " + MazeInfo.randomSeed);
+        Log.v(TAG, "BUILDER ALGO IS SELECTED TO " + MazeInfo.builderAlgo);
+
+
 
         // here is where I create the maze
         order = new DefaultOrder(MazeInfo.size, MazeInfo.builderAlgo, MazeInfo.rooms, MazeInfo.randomSeed);
