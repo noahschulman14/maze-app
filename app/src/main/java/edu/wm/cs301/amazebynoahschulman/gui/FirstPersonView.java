@@ -3,18 +3,14 @@
  */
 package edu.wm.cs301.amazebynoahschulman.gui;
 
-
 import android.graphics.Color;
-
 import java.util.List;
 import java.util.logging.Logger;
-
 import edu.wm.cs301.amazebynoahschulman.generation.BSPBranch;
 import edu.wm.cs301.amazebynoahschulman.generation.BSPLeaf;
 import edu.wm.cs301.amazebynoahschulman.generation.BSPNode;
 import edu.wm.cs301.amazebynoahschulman.generation.Floorplan;
 import edu.wm.cs301.amazebynoahschulman.generation.Wall;
-
 
 /**
  * This class encapsulates all functionality for drawing the current view 
@@ -74,14 +70,8 @@ public class FirstPersonView {
 	private int angle;  
 	
 	/**
-	 * The drawing is performed on a Graphics object. Storing it makes
-	 * its access easier for code that traverses the tree of BSP nodes
-	 * to draw walls. Drawing is performed in a piecemeal manner on
-	 * a buffer image, such that updating the panel that is on screen 
-	 * with the current buffer image is the responsibility of
-	 * the StatePlaying class.
+	 * The drawing is performed on a MazePanel object
 	 */
-	// NEED TO CHANGE THIS TO MAZE PANEL (?)
 	private MazePanel mazePanel;
 	
 	/**
@@ -160,26 +150,15 @@ public class FirstPersonView {
 	 * 
 	 */
 	public void draw(MazePanel panel, int x, int y, int walkStep, int ang, float percentToExit) {
-//		// obtain a Graphics2D object we can draw on
-//		Graphics g = panel.getBufferGraphics() ;
-//        // viewers draw on the buffer graphics
-//        if (null == g) {
-//            LOGGER.warning("Can't get graphics object to draw on, mitigate this by skipping draw operation") ;
-//            return;
-//        }
-//        gc = (Graphics2D) g ;
-//
 		mazePanel = panel;
         // update fields angle, viewx, viewy for current position and viewing angle
         angle = ang ;
         setView(x, y, walkStep);
-
         // update graphics
         // draw background figure: lightGrey to green on bottom half, yellow to gold on top half
         drawBackground(panel, percentToExit);
         // set color to white and draw what ever can be seen from the current position
 		panel.setColor(Color.WHITE);
-        // g.setColor(ColorTheme.getColor(MazeColors.FIRSTPERSON_DEFAULT));
         // reset the set of ranges to a single new element (0,width-1)
         // to cover the full width of the view 
         // as we have not drawn any polygons (walls) yet.
@@ -226,10 +205,6 @@ public class FirstPersonView {
 	 */
 	private void drawBackground(MazePanel mazePanel, float percentToExit) {
 		mazePanel.addBackground(percentToExit);
-//		graphics.setColor(ColorTheme.getColor(MazeColors.BACKGROUND_TOP,percentToExit));
-//		graphics.fillRect(0, 0, viewWidth, viewHeight/2);
-//		graphics.setColor(ColorTheme.getColor(MazeColors.BACKGROUND_BOTTOM,percentToExit));
-//		graphics.fillRect(0, viewHeight/2, viewWidth, viewHeight/2);
 	}
 
 	/**
@@ -444,8 +419,7 @@ public class FirstPersonView {
 		
 		// moved code for drawing bits and pieces into yet another method to 
 		// gain more clarity on what information is actually needed
-		//gc.setColor(ColorTheme.getColor(wall.getColor()));
-		// FOR NOW JUST GOING TO SET COLOR TO CYAN
+		// FOR NOW SETTING WALL COLOR TO CYAN
 		mazePanel.setColor(Color.CYAN);
 		boolean drawn = drawPolygons(x1, x2, y11, y12, y21, y22);
 		

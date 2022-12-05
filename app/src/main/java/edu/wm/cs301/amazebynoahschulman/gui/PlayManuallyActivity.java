@@ -1,7 +1,6 @@
 package edu.wm.cs301.amazebynoahschulman.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,13 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import edu.wm.cs301.amazebynoahschulman.R;
-import edu.wm.cs301.amazebynoahschulman.generation.Maze;
 
 /**
  * PlayManuallyActivity class -
@@ -98,15 +93,11 @@ public class PlayManuallyActivity extends AppCompatActivity {
         statePlaying.setPlayManuallyActivity(this);
         statePlaying.start(mazePanel);
 
-
-
-
         // set the shortest possible path length to be passed to winning screen
         int[] startingCoords = MazeInfo.maze.getStartingPosition();
         distanceToExit = MazeInfo.maze.getDistanceToExit(startingCoords[0], startingCoords[1]);
 
         // this is for FORWARD BUTTON, increases path length by 1
-        // IN P7 WILL MOVE ROBOT FORWARD
         forwardButton = findViewById(R.id.forwardButton);
         forwardButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +109,6 @@ public class PlayManuallyActivity extends AppCompatActivity {
         });
 
         // this is for JUMP BUTTON, increases path length by 1
-        // IN P7 WILL JUMP ROBOT
         jumpButton = findViewById(R.id.jumpButton);
         jumpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +120,6 @@ public class PlayManuallyActivity extends AppCompatActivity {
         });
 
         // this is for LEFT BUTTON
-        // in p7 will move robot left
         leftButton = findViewById(R.id.leftButton);
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +130,6 @@ public class PlayManuallyActivity extends AppCompatActivity {
         });
 
         // this is for RIGHT BUTTON
-        // in p7 will move robot right
         rightButton = findViewById(R.id.rightButton);
         rightButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +140,6 @@ public class PlayManuallyActivity extends AppCompatActivity {
         });
 
         // this is for SHOW MAP SWITCH
-        // in p7 will show map
         showMapSwitch = findViewById(R.id.showMapSwitch);
         showMapSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -168,7 +155,6 @@ public class PlayManuallyActivity extends AppCompatActivity {
         });
 
         // this is for SHOW VISIBLE WALLS SWITCH
-        // in p7 will show map's visible walls
         showVisibleWallsSwitch = findViewById(R.id.showVisibleWallsSwitch);
         // initializing mapsizeTextView, will become visible when show visible walls
         mapSize = findViewById(R.id.mapSizeTextView);
@@ -193,7 +179,6 @@ public class PlayManuallyActivity extends AppCompatActivity {
         });
 
         // this is for SHOW SOLUTION SWITCH
-        // in p7 will show solution on map
         showSolutionSwitch = findViewById(R.id.showSolutionSwitch);
         showSolutionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -227,7 +212,6 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 statePlaying.handleUserInput(Constants.UserInput.ZOOMIN, 1);
             }
         });
-
     }
 
     // back button functionality, moves to StateTitle

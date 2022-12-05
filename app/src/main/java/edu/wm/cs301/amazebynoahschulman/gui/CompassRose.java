@@ -1,13 +1,7 @@
 package edu.wm.cs301.amazebynoahschulman.gui;
 
-
-
-
 import android.graphics.Color;
-import android.util.Log;
-
 import edu.wm.cs301.amazebynoahschulman.generation.CardinalDirection;
-
 
 /**
  * A component that draws a compass rose.  
@@ -20,9 +14,7 @@ import edu.wm.cs301.amazebynoahschulman.generation.CardinalDirection;
 public class CompassRose {
 	private static final long serialVersionUID = 1916497172430988388L;
 
-	private MazePanel mazePanel;
-	
-	
+
 	// fixed configuration for arms
     private static final float MAIN_LENGTH =  0.95f;
     private static final float MAIN_WIDTH =  0.15f;
@@ -30,14 +22,6 @@ public class CompassRose {
     // fixed configuration for circle surrounding arms
     private static final int CIRCLE_BORDER = 2;
 
-//    /**
-//     * The font used to write letters N,E,S,W on compass rose.
-//     * There is little need for flexibility,
-//     * so this is why it is fixed by the constructor.
-//     * It could be made flexible with getters/setters if needed.
-//     */
-//    private final Font markerFont;
-    
     // The scaler of the rose.  
     // The bordering circle will be this portion of the component dimensions.
     private double scaler;
@@ -57,8 +41,6 @@ public class CompassRose {
     /**
      * Construct a compass rose with the default settings.
      */
-
-
 	public CompassRose() {
 		this(0.9, 1.7);
 	}
@@ -104,24 +86,11 @@ public class CompassRose {
      * @param mazePanel The graphics object to draw on, actually must be a Graphics2D object.
      */
     public void paintComponent(MazePanel mazePanel) {
-        
-       // final Graphics2D g2 = (Graphics2D) g;
-        /* Original code
-        Dimension dimension = this.getSize();
-        int width = Math.min(dimension.width, dimension.height);
-        int mid = width / 2;
-        width = (int) (scaler * width);
-        */
-        
-        // Determine the dimensions for the visualization
+		// Determine the dimensions for the visualization
         int width = (int) (scaler * size);
         final int armLength = (int) (width * MAIN_LENGTH / 2);
         final int armWidth = (int) (width * MAIN_WIDTH / 2);
-        
-        // Set rendering hints to adjust quality of rendering  
-//        g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-//        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        
+
         /*
          * The compass rose is drawn from several components, 
          * a filled white circle as the background,
@@ -131,7 +100,6 @@ public class CompassRose {
          */
         drawBackground(mazePanel);
         drawArms(mazePanel, armLength, armWidth);
-        //drawBorderCircle(mazePanel, width); // note: not currently visible due to color settings
         drawDirectionMarker(mazePanel, width);
     }
 
@@ -154,7 +122,6 @@ public class CompassRose {
         x[0] = centerX;
         y[0] = centerY;
         // use the same color for all arms
-        //g2.setColor(ColorTheme.getColor(MazeColors.COMPASSROSE_MAIN_COLOR));
 		// MAIN COMPASS ROSE COLOR - USING GREEN
 		mazePanel.setColor(Color.MAGENTA);
 
@@ -173,7 +140,6 @@ public class CompassRose {
 	private void drawBackground(final MazePanel mazePanel) {
 		// color setting hard coded as white
 		mazePanel.setColor(Color.WHITE);
-		//g2.setColor(ColorTheme.getColor(MazeColors.COMPASSROSE_BACKGROUND));
 		// determine x,y coordinates for oval
 		final int x = centerX - size;
 		final int y = centerY - size;
@@ -267,11 +233,9 @@ public class CompassRose {
 		// only one variable is needed
 		final int w = width - 2 * CIRCLE_BORDER;
 		// draw both arcs
-		//g2.setColor(ColorTheme.getColor(MazeColors.COMPASSROSE_CIRCLE_SHADE));
 		// CIRCLE SHADE COLOR IS LTGRAY
 		mazePanel.setColor(Color.LTGRAY);
         mazePanel.addArc(x, y, w, w, 45, 180);
-        //g2.setColor(ColorTheme.getColor(MazeColors.COMPASSROSE_CIRCLE_HIGHLIGHT));
 		// CIRCLE HIGHLIGHT COLOR IS CYAN
 		mazePanel.setColor(Color.CYAN);
         mazePanel.addArc(x, y, w, w, 180 + 45, 180);
@@ -286,8 +250,6 @@ public class CompassRose {
 	 */
 	private void drawDirectionMarker(MazePanel mazePanel, int width) {
 		// catch special cases where drawing is not possible
-//		if (Double.isNaN(markerRadius) || markerFont == null)
-//			return;
 		if (Double.isNaN(markerRadius))
 			return;
 		
@@ -337,14 +299,6 @@ public class CompassRose {
 	 * @param str The string to draw
 	 */
     private void drawMarker(MazePanel mazePanel, float x, float y, String str) {
-//        GlyphVector gv = markerFont.createGlyphVector(g2.getFontRenderContext(), str);
-//        Rectangle2D rect = gv.getVisualBounds();
-//        // need to update x, y by half of rectangle width, height
-//        // to serve as x, y coordinates for drawing a GlyphVector
-//        x -= rect.getWidth() / 2;
-//        y += rect.getHeight() / 2;
-//
-//        g2.drawGlyphVector(gv, x, y);
 		mazePanel.addMarker(x, y, str);
     }
 }

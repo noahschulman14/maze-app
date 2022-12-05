@@ -1,35 +1,20 @@
 package edu.wm.cs301.amazebynoahschulman.gui;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import edu.wm.cs301.amazebynoahschulman.R;
 import edu.wm.cs301.amazebynoahschulman.generation.DefaultOrder;
 import edu.wm.cs301.amazebynoahschulman.generation.Factory;
-import edu.wm.cs301.amazebynoahschulman.generation.Maze;
 import edu.wm.cs301.amazebynoahschulman.generation.MazeFactory;
 import edu.wm.cs301.amazebynoahschulman.generation.Order;
 
@@ -69,24 +54,17 @@ public class GeneratingActivity extends AppCompatActivity  {
      */
     private backgroundThread thread = new backgroundThread();
     /**
-     * startButton Button field variable
-     */
-    private Button startButton;
-
-    /**
      * method to start background maze generation thread
      */
     public void startThread() {
         thread.start();
     }
-
     /**
      * method to stop background maze generation thread
      */
     public void stopThread() {
         thread.interrupt();
     }
-
     /**
      * Boolean field variable, tells if background maze generation is complete
      */
@@ -127,24 +105,22 @@ public class GeneratingActivity extends AppCompatActivity  {
      * shortly TextView field variable
      */
     private TextView shortly;
-
     /**
      * field variable for the maze order
      */
     private DefaultOrder order;
-
     /**
      * field variable for the maze factory
      */
     Factory mazeFactory;
 
-
-
+    /**
+     * background maze generation thread class
+     */
     class backgroundThread extends Thread {
         @Override
         public void run() {
             Log.v(TAG, "BACKGROUND THREAD RUNNING");
-
             // UPDATE buildProgress VIA Order.getProgress()
             while (order.getProgress() != 100) {
                 try {
@@ -157,7 +133,6 @@ public class GeneratingActivity extends AppCompatActivity  {
             mazeFactory.waitTillDelivered();
             // set maze to created maze
             MazeInfo.maze = order.getMaze();
-
 
             // ready boolean set to true once background maze generation is finished
             ready = true;
@@ -201,22 +176,16 @@ public class GeneratingActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generating);
 
+        // initializing UI objects
         buildProgress = findViewById(R.id.progressBar1);
         reminder = findViewById(R.id.textView5);
-
         robotConfigText = findViewById(R.id.textView6);
         robotConfigRadioGroup = findViewById(R.id.radioGroup2);
-
         reminder2 = findViewById(R.id.textView7);
         shortly = findViewById(R.id.textView8);
-
         driverRadioGroup = findViewById(R.id.radioGroup);
 
-        Toast.makeText(getApplicationContext(), "test" + MazeInfo.builderAlgo ,Toast.LENGTH_SHORT).show();
-
-
         // getting maze config info from SharedPreferences
-
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         // getting builderAlgo
         if (sharedPreferences.getString("builderAlgo", "Boruvka").equals("Boruvka")) {
@@ -228,7 +197,6 @@ public class GeneratingActivity extends AppCompatActivity  {
         if (sharedPreferences.getString("builderAlgo", "Boruvka").equals("DFS")) {
                     MazeInfo.builderAlgo = Order.Builder.DFS;
                 }
-
         // getting size
         MazeInfo.size = sharedPreferences.getInt("size", 0);
         // getting rooms
@@ -241,18 +209,12 @@ public class GeneratingActivity extends AppCompatActivity  {
         Log.v(TAG, "RANDOM SEED IS SELECTED TO " + MazeInfo.randomSeed);
         Log.v(TAG, "BUILDER ALGO IS SELECTED TO " + MazeInfo.builderAlgo);
 
-
-
         // here is where I create the maze
         order = new DefaultOrder(MazeInfo.size, MazeInfo.builderAlgo, MazeInfo.rooms, MazeInfo.randomSeed);
         mazeFactory = new MazeFactory();
         mazeFactory.order(order);
         // THEN START BACKGROUND THREAD THAT UPDATES ACTIVITY'S PROGRESS BAR BASED ON Order.UpdateProgress()
         startThread();
-
-
-
-
     }
 
     // for driver radio button group
@@ -261,14 +223,12 @@ public class GeneratingActivity extends AppCompatActivity  {
         driverRadioButton = findViewById(selectedId);
         driver = driverRadioButton.getText().toString();
         Log.v(TAG, driver + " radio button pressed");
-        Toast.makeText(getApplicationContext(),driver + " radio button pressed",Toast.LENGTH_SHORT).show();
+        // set maze driver based on radio button selection
         if (driverRadioButton == findViewById(R.id.radio_wallfollower) || driverRadioButton == findViewById(R.id.radio_wizard)) {
             if (driverRadioButton == findViewById(R.id.radio_wallfollower)) {
-                MazeInfo.wizard = false;
                 MazeInfo.driver = new WallFollower();
             }
             else {
-                MazeInfo.wizard = true;
                 MazeInfo.driver = new Wizard();
             }
             // if automated driver is selected, display radio button group to select a robot sensor configuration
@@ -320,7 +280,7 @@ public class GeneratingActivity extends AppCompatActivity  {
         robotConfigRadioButton = findViewById(selectedId);
         robotConfig = robotConfigRadioButton.getText().toString();
         Log.v(TAG,  robotConfig + " radio button pressed");
-        Toast.makeText(getApplicationContext(), robotConfig + " radio button pressed",Toast.LENGTH_SHORT).show();
+        // set robot's sensor configuration based on radio button selection
         if (robotConfigRadioButton == findViewById(R.id.radio_premium) || robotConfigRadioButton == findViewById(R.id.radio_mediocre)
                 || robotConfigRadioButton == findViewById(R.id.radio_soso) || robotConfigRadioButton == findViewById(R.id.radio_shaky)) {
             if (robotConfigRadioButton == findViewById(R.id.radio_premium)) {
@@ -366,7 +326,6 @@ public class GeneratingActivity extends AppCompatActivity  {
     @Override
     public void onBackPressed() {
         Log.v(TAG, "back button pressed");
-        Toast.makeText(getApplicationContext(),"back button pressed",Toast.LENGTH_SHORT).show();
         stopThread();
         super.onBackPressed();
     }

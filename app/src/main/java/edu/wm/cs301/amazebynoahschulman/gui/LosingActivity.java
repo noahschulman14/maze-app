@@ -8,8 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import edu.wm.cs301.amazebynoahschulman.R;
 
 /**
@@ -60,7 +58,6 @@ public class LosingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.v(TAG, "restart button pressed");
-                Toast.makeText(getApplicationContext(),"restart button pressed",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
                 // also passing the pathLength and distance2Exit to StateWinning
                 startActivity(intent);
@@ -90,7 +87,6 @@ public class LosingActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Log.v(TAG, "back button pressed");
-        Toast.makeText(getApplicationContext(),"back button pressed",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
         startActivity(intent);
     }

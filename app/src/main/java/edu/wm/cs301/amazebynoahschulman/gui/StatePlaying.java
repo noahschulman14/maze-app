@@ -2,7 +2,6 @@ package edu.wm.cs301.amazebynoahschulman.gui;
 
 
 import java.util.logging.Logger;
-
 import edu.wm.cs301.amazebynoahschulman.generation.CardinalDirection;
 import edu.wm.cs301.amazebynoahschulman.generation.Floorplan;
 import edu.wm.cs301.amazebynoahschulman.generation.Maze;
@@ -61,22 +60,11 @@ public class StatePlaying implements State {
 	 * first person view. As map and compass rose compete for space on the 
 	 * screen, one can show at most one of the two at any point in time.
 	 */
-	private CompassRose cr; 
-	   
+	private CompassRose cr;
     /**
      * The panel is the capability to draw on the screen.
      */
     private MazePanel panel;
-    
-//    /**
-//     * Control is the context class of the State pattern.
-//     * The reference is needed to pull some pieces of information
-//     * plus switch control to the next state, which
-//     * is the maze generating state.
-//     */
-//    private Control control;
-
-
     /**
      * Maze holds the main information on where walls are.
      */
@@ -170,8 +158,6 @@ public class StatePlaying implements State {
     	assert null != maze : "StatePlaying.start: maze must exist!";
     	
         started = true;
-        // keep the reference to the controller to be able to call method to switch the state
-       //control = controller;
         // keep the reference to the panel for drawing
         this.panel = panel;
         //
@@ -222,44 +208,7 @@ public class StatePlaying implements State {
         setCurrentPosition(start[0],start[1]) ;
         cd = CardinalDirection.East;
 	}
- 
-//	/**
-//     * Switches the controller to the final screen
-//     * @param pathLength gives the length of the path
-//     */
-//    public void switchFromPlayingToWinning(int pathLength) {
-//    	// need to instantiate and configure the winning state
-//        StateWinning currentState = new StateWinning();
-//
-//        // The playing state needs
-//        // 1) the path length
-//        //
-//        currentState.setPathLength(pathLength);
-//
-//        LOGGER.fine("Control switches from playing to winning screen, game completed.");
-//
-//        // update the context class with the new state
-//        // and hand over control to the new state
-//        control.setState(currentState);
-//        currentState.start(control, panel);
-//    }
-//
-//    /**
-//     * Switches the controller to the initial screen.
-//     */
-//    public void switchToTitle() {
-//       	// need to instantiate and configure the title state
-//        StateTitle currentState = new StateTitle();
-//
-//        LOGGER.fine("Control switches from playing to title screen, game play interrupted.");
-//
-//        // update the context class with the new state
-//        // and hand over control to the new state
-//
-//        control.setState(currentState);
-//        currentState.start(control, panel);
-//    }
-    
+
     /**
      * The method provides an appropriate response to user keyboard input. 
      * The control calls this method to communicate input and delegate its handling.
@@ -355,8 +304,6 @@ public class StatePlaying implements State {
     		printWarning();
     		return;
     	}
-        // NOTE::: MAYBE I NEED TO ERASE WHAT IS ON SCREEN WITH ADDBACKGROUND
-
     	// draw the first person view and the map view if wanted
     	firstPersonView.draw(panel, px, py, walkStep, angle, 
     			maze.getPercentageForDistanceToExit(px, py)) ;
@@ -365,8 +312,6 @@ public class StatePlaying implements State {
 					isInShowMazeMode(),isInShowSolutionMode()) ;
 		}
 		// update the screen with the buffer graphics
-        //panel.update() ;
-        // FOR NOW HAVE THIS CHANGED TO COMMIT (???)
         panel.commit();
     }
 

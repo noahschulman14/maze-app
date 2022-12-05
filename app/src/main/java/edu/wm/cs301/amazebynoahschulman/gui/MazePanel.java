@@ -34,17 +34,10 @@ public class MazePanel extends View implements P7PanelF22{
      * Field variable for the UIcanvas
      */
     private Canvas canvas;
-
-    private Canvas internalCanvas;
-
     /**
      * Field variable for the bitmap
      */
     private Bitmap manual;
-    /**
-     * Field variable for mutable bitmap
-     */
-    private Bitmap manual2;
     /**
      * Field variable for scaled bitmap
      */
@@ -61,8 +54,6 @@ public class MazePanel extends View implements P7PanelF22{
      */
     public MazePanel(Context context) {
         super(context);
-
-
         init(null);
     }
 
@@ -104,9 +95,6 @@ public class MazePanel extends View implements P7PanelF22{
      * @param set
      */
     private void init(@Nullable AttributeSet set) {
-        //manual = BitmapFactory.decodeResource(getResources(), R.drawable.manual_test_image);
-        //manual2 = manual.copy(Bitmap.Config.ARGB_8888, true);
-        //manual3 = Bitmap.createScaledBitmap(manual2, 700, 700, true);
         manual = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888);
         manual3 = Bitmap.createScaledBitmap(manual, 1000, 1000, true);
         paint = new Paint();
@@ -118,7 +106,6 @@ public class MazePanel extends View implements P7PanelF22{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //testMyImage(canvas);
         canvas.drawBitmap(manual3, 0, 0, paint);
     }
 
@@ -172,7 +159,6 @@ public class MazePanel extends View implements P7PanelF22{
      */
     @Override
     public void commit() {
-        // *** DON'T KNOW WHAT TO PUT HERE RIGHT NOW ****
         invalidate();
     }
 
@@ -212,11 +198,11 @@ public class MazePanel extends View implements P7PanelF22{
      */
     @Override
     public void addBackground(float percentToExit) {
-        // *** FOR NOW MAKE THE TOP COLOR GRAY ***
+        // top color set to GRAY
         setColor(Color.GRAY);
         // now draw rectangle that takes up bottom half of the MazePanel
         addFilledRectangle(0,0, 1000, 500);
-        // *** FOR NOW MAKE THE BOTTOM COLOR BACK ***
+        // bottom color set to BLACK
         setColor(Color.BLACK);
         addFilledRectangle(0,500, 1000, 500);
     }
@@ -238,7 +224,6 @@ public class MazePanel extends View implements P7PanelF22{
         paint.setStyle(Paint.Style.FILL);
         // now need to put a rectangle in specified part of canvas
         canvas.drawRect((float)x, (float)y, (float)x + (float)width, (float)y + (float)height, paint);
-        //                                                          ******SHOULD THIS BE Y - HEIGHT??? ******
     }
 
     /**
@@ -342,7 +327,6 @@ public class MazePanel extends View implements P7PanelF22{
         // set paint type to fill
         paint.setStyle(Paint.Style.FILL);
         canvas.drawOval((float)x, (float)y, (float)x + (float)width, (float)y + (float)height, paint);
-        //////////////////////////////////////////////////////////////////// *** AGAIN, SHOULD IT BE Y - HEIGHT???*******
     }
 
     /**
@@ -372,9 +356,7 @@ public class MazePanel extends View implements P7PanelF22{
      */
     @Override
     public void addArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
-        // i THINK i set the paint to fill for this
         paint.setStyle(Paint.Style.STROKE);
-        // I THINK I USE FALSE BOOLEAN FOR USECENTER
         canvas.drawArc((float)x, (float)y, (float)x + (float)width, (float)y + (float)height, startAngle, arcAngle, false, paint);
     }
 
@@ -387,7 +369,6 @@ public class MazePanel extends View implements P7PanelF22{
      */
     @Override
     public void addMarker(float x, float y, String str) {
-        // set paint type to stroke
         paint.setStyle(Paint.Style.FILL);
         paint.setTextSize(30);
         canvas.drawText(str, x, y, paint);
@@ -411,7 +392,6 @@ public class MazePanel extends View implements P7PanelF22{
      */
     @Override
     public void setRenderingHint(P7RenderingHints hintKey, P7RenderingHints hintValue) {
-        // ************* DON'T KNOW WHAT TO DO RIGHT NOW **************
     }
 
 

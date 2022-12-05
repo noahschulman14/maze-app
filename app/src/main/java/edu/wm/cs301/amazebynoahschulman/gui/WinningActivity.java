@@ -8,8 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import edu.wm.cs301.amazebynoahschulman.R;
 
 public class WinningActivity extends AppCompatActivity {
@@ -40,7 +38,6 @@ public class WinningActivity extends AppCompatActivity {
         setContentView(R.layout.activity_winning);
 
         // to get passed in values from previous activity
-        // previous activity
         Intent previousActivity = getIntent();
         // getting pathLength from previous activity, displays 9999 if nothing found
         int pathLength = previousActivity.getIntExtra("pathLength", 9999);
@@ -57,7 +54,6 @@ public class WinningActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.v(TAG, "RESTART GAME button pressed");
-                Toast.makeText(getApplicationContext(),"RESTART GAME button pressed",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
                 // also passing the pathLength and distance2Exit to StateWinning
                 startActivity(intent);
@@ -90,7 +86,6 @@ public class WinningActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Log.v(TAG, "BACK button pressed");
-        Toast.makeText(getApplicationContext(),"BACK button pressed",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
         startActivity(intent);
     }

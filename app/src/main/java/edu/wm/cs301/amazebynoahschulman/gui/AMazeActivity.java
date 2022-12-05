@@ -1,7 +1,6 @@
 package edu.wm.cs301.amazebynoahschulman.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,13 +15,8 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
 import java.util.Random;
-
 import edu.wm.cs301.amazebynoahschulman.R;
-import edu.wm.cs301.amazebynoahschulman.generation.Maze;
 import edu.wm.cs301.amazebynoahschulman.generation.Order;
 
 /**
@@ -44,9 +38,7 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
      */
     private boolean rooms;
     /**
-     * Field variable to store maze builder algorithm
-     * FOR PROJECT 6 THIS IS AN INT
-     * IN PROJECT 7 IT WILL BE TYPE BUILDER
+     * Field variable to store maze builder algorithm as a string
      */
     private String builderAlgo;
     /**
@@ -71,7 +63,9 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_amaze);
+        // by default the maze has rooms (aka perfect parameter = false)
         MazeInfo.rooms = false;
+        // by default, the maze uses the Boruvka builder algorithm
         MazeInfo.builderAlgo = Order.Builder.Boruvka;
 
         // this is for the exploreButton, moves it to GeneratingActivity when clicked
@@ -80,16 +74,11 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
             public void onClick(View v) {
                 Log.v(TAG, "Explore button pressed");
 
-                MazeInfo.started = true;
-
-                // Code here executes on main thread after user presses button
-
-
+                // generating a random number for the maze seed
                 Random r = new Random();
                 MazeInfo.randomSeed = r.nextInt(500);
 
                 // saving maze config settings in SharedPreferences
-                //SharedPreferences sharedPreferences = AMazeActivity.this.getPreferences(Context.MODE_PRIVATE);
                 SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("size", size);
@@ -99,24 +88,9 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
                 editor.putBoolean("started", true);
                 editor.apply();
 
-//                MazeInfo.rooms = rooms;
-//                MazeInfo.size = size;
-//
-//                // setting maze's builder algorithm according to selected builderAlgo string
-//                if (builderAlgo.equals("Boruvka")) {
-//                    MazeInfo.builderAlgo = Order.Builder.Boruvka;
-//                }
-//                if (builderAlgo.equals("Prim")) {
-//                    MazeInfo.builderAlgo = Order.Builder.Prim;
-//                }
-//                if (builderAlgo.equals("DFS")) {
-//                    MazeInfo.builderAlgo = Order.Builder.DFS;
-//                }
-
-
+                // moving to the GeneratingActivity activity
                 Intent intent = new Intent(getApplicationContext(), GeneratingActivity.class);
                 startActivity(intent);
-
             }
         });
 
@@ -125,14 +99,15 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
         revisitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.v(TAG, "Revisit button pressed");
-                // Code here executes on main thread after user presses button
+
+                // if a maze has not been stored before, if the user enters parameters for
+                // maze creation when the game first starts, in my implementation pressing the
+                // revisit button will generate a maze with the entered parameters
                 SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
                 if (sharedPreferences.getBoolean("started", false) == false) {
                     Random r = new Random();
                     MazeInfo.randomSeed = r.nextInt(500);
-
                     // saving maze config settings in SharedPreferences
-                    //SharedPreferences sharedPreferences = AMazeActivity.this.getPreferences(Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putInt("size", size);
                     editor.putBoolean("rooms", rooms);
@@ -141,37 +116,37 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
                     editor.putBoolean("started", true);
                     editor.apply();
                 }
+                // if there is a maze already stored in persistent storage, then
+                // pressing the explore button will generate the maze with the paremeters that
+                // are stored in persistent storage
 
+                // moving to GeneratingActivity activity
                 Intent intent = new Intent(getApplicationContext(), GeneratingActivity.class);
                 startActivity(intent);
             }
         });
 
         // making the seek bar's value update on screen in a textview
+        // also setting the maze's size parameter to the seekbar's value
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBarProgress = (TextView) findViewById(R.id.seekBarProgress);
-
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 size = progress;
                 seekBarProgress.setText("SIZE: "+ progress);
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 Log.v(TAG, "Size seekbar pressed");
             }
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
         // this is for builder algorithm spinner:
         builderAlgoSpinner = findViewById(R.id.spinner);
-
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.builder, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         builderAlgoSpinner.setAdapter(adapter);
@@ -205,7 +180,6 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 
 }

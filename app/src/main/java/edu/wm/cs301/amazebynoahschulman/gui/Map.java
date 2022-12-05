@@ -5,9 +5,7 @@ package edu.wm.cs301.amazebynoahschulman.gui;
 
 
 import android.graphics.Color;
-
 import java.util.logging.Logger;
-
 import edu.wm.cs301.amazebynoahschulman.generation.CardinalDirection;
 import edu.wm.cs301.amazebynoahschulman.generation.Floorplan;
 import edu.wm.cs301.amazebynoahschulman.generation.Maze;
@@ -37,7 +35,6 @@ public class Map {
 	 * The logger is used to track execution and report issues.
 	 */
 	private static final Logger LOGGER = Logger.getLogger(Map.class.getName());
-
 
 	// keep local copies of values determined for UI appearance
 	final int viewWidth;  // set to Constants.VIEW_WIDTH, 
@@ -143,12 +140,6 @@ public class Map {
 	public void draw(MazePanel panel, int x, int y, int angle, int walkStep,
 			boolean showMaze, boolean showSolution) {
 		mazePanel = panel;
-		//Graphics g = panel.getBufferGraphics() ;
-        // viewers draw on the buffer graphics
-//        if (null == g) {
-//        	LOGGER.warning("Can't get graphics object to draw on, mitigate this by skipping draw operation") ;
-//            return;
-//        }
         final int viewDX = getViewDX(angle); 
         final int viewDY = getViewDY(angle);
         drawMap(panel, x, y, walkStep, viewDX, viewDY, showMaze, showSolution) ;
@@ -196,7 +187,6 @@ public class Map {
 		final int mazeWidth = maze.getWidth() ;
 		final int mazeHeight = maze.getHeight() ;
 		
-		//g.setColor(ColorTheme.getColor(MazeColors.MAP_DEFAULT));
 		// default color is LTGRAY
 		mazePanel.setColor(Color.LTGRAY);
 		
@@ -279,8 +269,8 @@ public class Map {
 			int startY) {
 		if (hasAHorizontalWall(x, y) && (seenWalls.hasWall(x,y, CardinalDirection.North) || showMaze) ) {
 			mazePanel.setColor(seenWalls.hasWall(x,y, CardinalDirection.North) ?
-					Color.DKGRAY :
-						Color.LTGRAY);
+					Color.LTGRAY :
+						Color.DKGRAY);
 			mazePanel.addLine(startX, startY, startX + mapScale, startY);
 		}
 	}
