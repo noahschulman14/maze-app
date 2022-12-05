@@ -208,7 +208,7 @@ public class GeneratingActivity extends AppCompatActivity  {
 
         driverRadioGroup = findViewById(R.id.radioGroup);
 
-
+        Toast.makeText(getApplicationContext(), "test" + MazeInfo.builderAlgo ,Toast.LENGTH_SHORT).show();
 
         // here is where I create the maze
         order = new DefaultOrder(MazeInfo.size, MazeInfo.builderAlgo, MazeInfo.rooms, MazeInfo.randomSeed);

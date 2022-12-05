@@ -15,7 +15,7 @@ public class MazeInfo {
     /**
      * Field variable to store whether maze has rooms
      */
-    protected static boolean rooms;
+    protected static boolean rooms = false;
     /**
      * Field variable to store maze builder algorithm
      */
