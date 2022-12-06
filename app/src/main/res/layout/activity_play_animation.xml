@@ -185,6 +185,8 @@
         android:text="@string/showMap"
         android:textColor="@color/white"
         android:textSize="16sp"
+        android:thumbTint="@color/white"
+        android:trackTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/animationSpeedSeekBar"></Switch>
@@ -236,7 +238,7 @@
         android:max="8"
         android:progress="4"
         android:progressTint="@color/hell_main"
-        android:thumbTint="@color/hell_main"
+        android:thumbTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
