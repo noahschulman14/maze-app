@@ -10,12 +10,13 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="608dp"
-        android:layout_height="1290dp"
+        android:layout_width="425dp"
+        android:layout_height="1000dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/hell_background_option_1"
-        tools:layout_editor_absoluteX="-72dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/hell_background_option_1" />
 
     <TextView
         android:id="@+id/textEscapeHellsMaze"
