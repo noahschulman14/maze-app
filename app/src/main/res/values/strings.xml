@@ -54,7 +54,7 @@
     <string name="go2Losing">GO2LOSING</string>
 
     // strings for WinningActivity
-    <string name="congratulations">YOU WON</string>
+    <string name="congratulations">CONGRATULATIONS! YOU ESCAPED</string>
     <string name="restartGame">RESTART GAME</string>
     <string name="pathLength">PATH LENGTH: </string>
     <string name="shortestPathLength">SHORTEST POSSIBLE PATH: </string>

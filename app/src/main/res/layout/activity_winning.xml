@@ -6,16 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".gui.WinningActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="608dp"
+        android:layout_height="1290dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/heaven_option_2"
+        tools:layout_editor_absoluteX="-82dp"
+        tools:layout_editor_absoluteY="-255dp" />
+
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="76dp"
+        android:fontFamily="serif"
         android:text="@string/congratulations"
-        android:textColor="#035E07"
-        android:textSize="48sp"
+        android:textAlignment="center"
+        android:textColor="@color/purple_700"
+        android:textSize="38sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,8 +36,13 @@
         android:id="@+id/restartButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="177dp"
+        android:layout_marginBottom="220dp"
+        android:backgroundTint="@color/purple_700"
+        android:fontFamily="serif"
         android:text="@string/restartGame"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:typeface="serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -34,18 +52,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="190dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="serif"
         android:text="@string/pathLength"
+        android:textColor="@color/purple_700"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/shortestPathLengthTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
+        android:fontFamily="serif"
         android:text="@string/shortestPathLength"
+        android:textColor="@color/purple_700"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/pathLengthTextView1"
         app:layout_constraintTop_toBottomOf="@+id/pathLengthTextView1" />
@@ -55,9 +79,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
+        android:fontFamily="serif"
         android:text="@string/energyConsumption"
+        android:textColor="@color/purple_700"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/shortestPathLengthTextView1"
-        app:layout_constraintTop_toBottomOf="@+id/shortestPathLengthTextView1" />
+        app:layout_constraintTop_toBottomOf="@+id/shortestPathLengthTextView1"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
