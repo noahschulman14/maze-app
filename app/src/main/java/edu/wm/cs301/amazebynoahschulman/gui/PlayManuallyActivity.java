@@ -99,6 +99,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
 
         // this is for FORWARD BUTTON, increases path length by 1
         forwardButton = findViewById(R.id.forwardButton);
+        forwardButton.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         forwardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,6 +111,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
 
         // this is for JUMP BUTTON, increases path length by 1
         jumpButton = findViewById(R.id.jumpButton);
+        jumpButton.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         jumpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,6 +123,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
 
         // this is for LEFT BUTTON
         leftButton = findViewById(R.id.leftButton);
+        leftButton.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,6 +134,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
 
         // this is for RIGHT BUTTON
         rightButton = findViewById(R.id.rightButton);
+        rightButton.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         rightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
