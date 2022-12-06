@@ -16,15 +16,15 @@
 
     // STRINGS FOR GeneratingActivity
     <string name="constructing">SLAVES CONSTRUCTING MAZE...</string>
-    <string name="please">SELECT A DRIVER</string>
-    <string name="please2">SELECT A ROBOT CONFIG</string>
-    <string name="buildProgress">BUILD PROGRESS</string>
+    <string name="please">SELECT A DRIVER TO START!</string>
+    <string name="please2">SELECT SENSORS TO START!</string>
+    <string name="buildProgress">BUILD PROGRESS:</string>
     <string name="start">START JOURNEY</string>
     <string name="driver">SELECT DRIVER</string>
     <string name="Manual">MANUAL</string>
     <string name="Wallfollower">WALL FOLLOWER</string>
     <string name="Wizard">WIZARD</string>
-    <string name="robotConfig">SELECT ROBOT CONFIG</string>
+    <string name="robotConfig">SELECT SENSORS</string>
     <string name="premium">PREMIUM</string>
     <string name="mediocre">MEDIOCRE</string>
     <string name="soso">SOSO</string>
