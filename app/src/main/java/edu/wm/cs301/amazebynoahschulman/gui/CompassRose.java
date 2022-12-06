@@ -123,7 +123,7 @@ public class CompassRose {
         y[0] = centerY;
         // use the same color for all arms
 		// MAIN COMPASS ROSE COLOR - USING GREEN
-		mazePanel.setColor(Color.MAGENTA);
+		mazePanel.setColor(Color.RED);
 
         // draw each arm
         drawArmNorth(mazePanel, length, width, x, y);

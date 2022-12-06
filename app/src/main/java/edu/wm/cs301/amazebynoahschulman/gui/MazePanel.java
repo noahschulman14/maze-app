@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Picture;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.PictureDrawable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -371,6 +372,7 @@ public class MazePanel extends View implements P7PanelF22{
     public void addMarker(float x, float y, String str) {
         paint.setStyle(Paint.Style.FILL);
         paint.setTextSize(30);
+        paint.setTypeface(Typeface.create("Serif", Typeface.ITALIC));
         canvas.drawText(str, x, y, paint);
     }
 

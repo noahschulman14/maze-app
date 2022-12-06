@@ -385,7 +385,7 @@ public class Map {
 		return x >> 16;
 	}
 	/**
-	 * Draws a red circle at the center of the screen and
+	 * Draws a dark gray circle at the center of the screen and
 	 * an arrow for the current direction.
 	 * It always reside on the center of the screen. 
 	 * The map drawing moves if the user changes location.
@@ -399,7 +399,7 @@ public class Map {
 	 */
 	private void drawCurrentLocation(MazePanel mazePanel, int viewDX, int viewDY) {
 		// CURRENT LOCATION COLOR
-		mazePanel.setColor(Color.RED);
+		mazePanel.setColor(Color.DKGRAY);
 		// draw oval of appropriate size at the center of the screen
 		int centerX = viewWidth/2; // center x
 		int centerY = viewHeight/2; // center y
