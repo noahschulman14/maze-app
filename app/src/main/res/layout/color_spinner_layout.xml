@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:text="test"
+    android:textSize="20sp"
+    android:fontFamily="serif"
+    android:padding="10dp"
+    android:textColor="@color/hell_main"
+    android:layout_height="wrap_content">
+
+</CheckedTextView>

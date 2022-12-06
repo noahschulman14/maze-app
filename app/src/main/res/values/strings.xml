@@ -5,7 +5,7 @@
     <string name="revisit">REVISIT</string>
     <string name="explore">EXPLORE</string>
     <string name="seekBarString">SIZE: 0</string>
-    <string name="builderSpinnerString">BUILDER</string>
+    <string name="builderSpinnerString">BUILDER:</string>
     <string name="roomSwitch">ROOMS</string>
     <string-array name="builder">
         <item>Boruvka</item>
