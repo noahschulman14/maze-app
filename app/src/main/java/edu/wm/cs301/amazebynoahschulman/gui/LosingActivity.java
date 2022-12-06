@@ -61,6 +61,7 @@ public class LosingActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
                 // also passing the pathLength and distance2Exit to StateWinning
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
 
@@ -89,5 +90,6 @@ public class LosingActivity extends AppCompatActivity {
         Log.v(TAG, "back button pressed");
         Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }

@@ -140,12 +140,14 @@ public class GeneratingActivity extends AppCompatActivity  {
             if (manual) {
                 Intent intent = new Intent(getApplicationContext(), PlayManuallyActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
             // if an automated driver is selected and robot sensor configuration is selected and
             // background maze generation is finished, move to PlayManuallyActivity
             else if (auto && robot) {
                 Intent intent = new Intent(getApplicationContext(), PlayAnimationActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
             // if automated driver is selected and background maze generation is finished
             // but robot sensor configuration is not selected, display text to remind user to select one
@@ -249,6 +251,7 @@ public class GeneratingActivity extends AppCompatActivity  {
             if (ready && robot) {
                 Intent intent = new Intent(getApplicationContext(), PlayAnimationActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
             // if maze generation is finished and a robot configuration is not selected,
             // remind user to select one
@@ -271,6 +274,7 @@ public class GeneratingActivity extends AppCompatActivity  {
             if (ready) {
                 Intent intent = new Intent(getApplicationContext(), PlayManuallyActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         }
     }
@@ -319,14 +323,16 @@ public class GeneratingActivity extends AppCompatActivity  {
             if (ready && auto) {
                 Intent intent = new Intent(getApplicationContext(), PlayAnimationActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         }
     }
 
     @Override
     public void onBackPressed() {
-        Log.v(TAG, "back button pressed");
-        stopThread();
-        super.onBackPressed();
+        Log.v(TAG, "BACK button pressed");
+        Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }

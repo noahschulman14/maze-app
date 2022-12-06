@@ -224,6 +224,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
         Log.v(TAG, "BACK button pressed");
         Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 
     public void startWinningActivity() {
@@ -235,6 +236,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
         // passing energy consumption to avoid errors in next state
         intent.putExtra("energyConsumption", 99999999);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 
 

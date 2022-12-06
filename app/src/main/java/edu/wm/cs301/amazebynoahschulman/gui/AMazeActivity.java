@@ -92,6 +92,7 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
                 // moving to the GeneratingActivity activity
                 Intent intent = new Intent(getApplicationContext(), GeneratingActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
 
@@ -124,6 +125,7 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
                 // moving to GeneratingActivity activity
                 Intent intent = new Intent(getApplicationContext(), GeneratingActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
 

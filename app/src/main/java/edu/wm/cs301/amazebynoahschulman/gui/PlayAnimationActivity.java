@@ -307,6 +307,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
         intent.putExtra("energyConsumption", (int)MazeInfo.driver.getEnergyConsumption());
         intent.putExtra("playAnimation", true);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         finish();
     }
 
@@ -326,6 +327,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
         intent.putExtra("energyConsumption", (int)MazeInfo.driver.getEnergyConsumption());
         intent.putExtra("playAnimation", true);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         finish();
     }
 
@@ -336,6 +338,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
         Log.v(TAG, "BACK button pressed");
         Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         handler.removeCallbacks(drive2exit);
         finish();
     }
