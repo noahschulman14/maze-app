@@ -8,6 +8,15 @@
     tools:context=".gui.PlayAnimationActivity"
     tools:visibility="visible">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="608dp"
+        android:layout_height="1290dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/lava_option1"
+        tools:layout_editor_absoluteX="-72dp"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/backOFF"
@@ -27,8 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="serif"
         android:text="@string/front"
-        android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sensorStatusTextView" />
 
@@ -49,7 +59,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginEnd="50dp"
         android:elevation="2dp"
         android:visibility="visible"
         app:layout_constraintEnd_toStartOf="@+id/rightOFF"
@@ -76,7 +86,8 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="16dp"
         android:text="@string/back"
-        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:typeface="serif"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/sensorStatusTextView" />
 
@@ -110,8 +121,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:fontFamily="serif"
         android:text="@string/right"
-        android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sensorStatusTextView" />
 
@@ -133,8 +145,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="60dp"
+        android:fontFamily="serif"
         android:text="@string/left"
-        android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/sensorStatusTextView" />
 
@@ -143,8 +156,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="serif"
         android:text="@string/sensorStatus"
-        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -154,7 +169,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginEnd="50dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/rightOFF"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
@@ -166,7 +181,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="true"
+        android:fontFamily="serif"
         android:text="@string/showMap"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/animationSpeedSeekBar"></Switch>
@@ -175,9 +193,10 @@
         android:id="@+id/mapSizeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="serif"
         android:text="@string/mapSize"
+        android:textColor="@color/white"
         android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/showMapSwitch" />
@@ -187,19 +206,25 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="363dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/hell_main"
         android:max="3500"
         android:progress="3500"
+        android:progressBackgroundTint="@color/hell_main"
+        android:progressTint="@color/hell_main"
+        android:secondaryProgressTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="56dp"
+        android:layout_width="wrap_content"
         android:layout_height="18dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="serif"
         android:text="@string/remeiningEnergy"
-        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playPauseToggleButton" />
@@ -210,6 +235,8 @@
         android:layout_height="wrap_content"
         android:max="8"
         android:progress="4"
+        android:progressTint="@color/hell_main"
+        android:thumbTint="@color/hell_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -219,8 +246,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="serif"
         android:text="@string/animationSpeed"
-        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/energyProgressBar" />
@@ -239,10 +268,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="#673AB7"
+        android:backgroundTint="@color/black"
         android:text="ToggleButton"
+        android:textColor="@color/hell_main"
         android:textOff="@string/start1"
         android:textOn="@string/pause"
+        android:textSize="16sp"
+        android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mazePanel" />
@@ -253,8 +285,11 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="136dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="serif"
         android:text="@string/zoomIn"
         android:textAlignment="center"
+        android:textColor="@color/hell_main"
         android:textSize="24sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -267,8 +302,11 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="serif"
         android:text="@string/zoomOut"
         android:textAlignment="center"
+        android:textColor="@color/hell_main"
         android:textSize="24sp"
         android:visibility="visible"
         app:layout_constraintEnd_toStartOf="@+id/zoomInButton"
