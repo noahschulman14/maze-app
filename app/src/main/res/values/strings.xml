@@ -62,7 +62,7 @@
 
     // strings for LosingActivity
     <string name="youLost">YOU LOST</string>
-    <string name="reason">ROBOT RAN OUT OF ENERGY OR CRASHED</string>
+    <string name="reason">ROBOT RAN OUT OF ENERGY</string>
 
 
 </resources>
