@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -58,12 +59,23 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
      * roomsSwitch Switch field variable
      */
     private Switch roomsSwitch;
+    /**
+     * Field variable for titleSong MediaPlayer object
+     */
+    private MediaPlayer titleSong;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_amaze);
+        // starting title music
+        titleSong = MediaPlayer.create(AMazeActivity.this, R.raw.title_song);
+        titleSong.setVolume(1.0f, 1.0f);
+        titleSong.setLooping(true);
+        titleSong.start();
+
         // by default the maze has rooms (aka perfect parameter = false)
         MazeInfo.rooms = false;
         // by default, the maze uses the Boruvka builder algorithm
@@ -183,6 +195,12 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        titleSong.release();
     }
 
 }

@@ -26,7 +26,7 @@ public class MazeInfo {
     /**
      * Field variable to store unreliable robot
      */
-    protected static UnreliableRobot robot = new UnreliableRobot();
+    protected static UnreliableRobot robot;
     /**
      * Field variable to store forward sensor
      */

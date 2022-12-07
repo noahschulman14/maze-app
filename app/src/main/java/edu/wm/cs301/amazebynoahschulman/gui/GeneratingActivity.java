@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import edu.wm.cs301.amazebynoahschulman.R;
 import edu.wm.cs301.amazebynoahschulman.generation.DefaultOrder;
 import edu.wm.cs301.amazebynoahschulman.generation.Factory;
+import edu.wm.cs301.amazebynoahschulman.generation.Maze;
 import edu.wm.cs301.amazebynoahschulman.generation.MazeFactory;
 import edu.wm.cs301.amazebynoahschulman.generation.Order;
 
@@ -113,6 +115,14 @@ public class GeneratingActivity extends AppCompatActivity  {
      * field variable for the maze factory
      */
     Factory mazeFactory;
+    /**
+     * Field variable for buildingSounds MediaPlayer object
+     */
+    private MediaPlayer buildingSounds;
+    /**
+     * Field variable for screamingSounds MediaPlayer object
+     */
+    private MediaPlayer screamingSounds;
 
     /**
      * background maze generation thread class
@@ -177,6 +187,16 @@ public class GeneratingActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generating);
+        // starting building sound effects
+        buildingSounds = MediaPlayer.create(GeneratingActivity.this, R.raw.building_sounds);
+        buildingSounds.setVolume(1.0f, 1.0f);
+        buildingSounds.setLooping(true);
+        buildingSounds.start();
+        // starting screaming sound effects
+        screamingSounds = MediaPlayer.create(GeneratingActivity.this, R.raw.screaming_sounds);
+        screamingSounds.setVolume(1.0f, 1.0f);
+        screamingSounds.setLooping(true);
+        screamingSounds.start();
 
         // initializing UI objects
         buildProgress = findViewById(R.id.progressBar1);
@@ -228,9 +248,11 @@ public class GeneratingActivity extends AppCompatActivity  {
         // set maze driver based on radio button selection
         if (driverRadioButton == findViewById(R.id.radio_wallfollower) || driverRadioButton == findViewById(R.id.radio_wizard)) {
             if (driverRadioButton == findViewById(R.id.radio_wallfollower)) {
+                MazeInfo.robot = new UnreliableRobot();
                 MazeInfo.driver = new WallFollower();
             }
             else {
+                MazeInfo.robot = new UnreliableRobot();
                 MazeInfo.driver = new Wizard();
             }
             // if automated driver is selected, display radio button group to select a robot sensor configuration
@@ -334,5 +356,12 @@ public class GeneratingActivity extends AppCompatActivity  {
         Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
         startActivity(intent);
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        buildingSounds.release();
+        screamingSounds.release();
     }
 }

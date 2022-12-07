@@ -2,9 +2,11 @@ package edu.wm.cs301.amazebynoahschulman.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -120,11 +122,24 @@ public class PlayAnimationActivity extends AppCompatActivity {
      * Field variable to store the speed the animation is set to
      */
     private int speed = 400;
+    /**
+     * Field variable for deathMetal MediaPlayer object
+     */
+    private MediaPlayer deathMetal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_animation);
+
+        // need to get the starting position
+        int[] startingCoords = MazeInfo.maze.getStartingPosition();
+
+        // start deathMetal music
+        deathMetal = MediaPlayer.create(PlayAnimationActivity.this, R.raw.death_metal);
+        deathMetal.setVolume(1.0f, 1.0f);
+        deathMetal.setLooping(true);
+        deathMetal.start();
 
         // create new StatePlaying object
         statePlaying = new StatePlaying();
@@ -160,7 +175,6 @@ public class PlayAnimationActivity extends AppCompatActivity {
         statePlaying.handleUserInput(Constants.UserInput.TOGGLESOLUTION, 1);
 
         // set the shortest possible path length to be passed to winning screen
-        int[] startingCoords = MazeInfo.maze.getStartingPosition();
         distanceToExit = MazeInfo.maze.getDistanceToExit(startingCoords[0], startingCoords[1]) - 1;
 
         // initialize start and stop buttons
@@ -381,6 +395,9 @@ public class PlayAnimationActivity extends AppCompatActivity {
         }
     }
 
-
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        deathMetal.release();
+    }
 }

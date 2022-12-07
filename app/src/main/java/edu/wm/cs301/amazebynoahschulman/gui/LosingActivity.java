@@ -3,6 +3,7 @@ package edu.wm.cs301.amazebynoahschulman.gui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,11 +37,29 @@ public class LosingActivity extends AppCompatActivity {
      * energyConsumptionTextView TextView field variable
      */
     private TextView energyConsumptionTextView;
+    /**
+     * Field variable for tortureSounds MediaPlayer object
+     */
+    private MediaPlayer tortureSounds;
+    /**
+     * Field variable for fireSounds MediaPlayer object
+     */
+    private MediaPlayer fireSounds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_losing);
+        // start tortureSounds sound effects
+        tortureSounds = MediaPlayer.create(LosingActivity.this, R.raw.torture);
+        tortureSounds.setVolume(1.0f, 1.0f);
+        tortureSounds.setLooping(true);
+        tortureSounds.start();
+        // start fireSounds sound effects
+        fireSounds = MediaPlayer.create(LosingActivity.this, R.raw.fire);
+        fireSounds.setVolume(1.0f, 1.0f);
+        fireSounds.setLooping(true);
+        fireSounds.start();
 
         // to get passed in values from previous activity
         // previous activity
@@ -91,5 +110,12 @@ public class LosingActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
         startActivity(intent);
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        tortureSounds.release();
+        fireSounds.release();
     }
 }

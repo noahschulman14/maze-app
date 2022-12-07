@@ -3,6 +3,7 @@ package edu.wm.cs301.amazebynoahschulman.gui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,11 +32,21 @@ public class WinningActivity extends AppCompatActivity {
      * energyConsumptionTextView TextView field variable
      */
     private TextView energyConsumptionTextView;
+    /**
+     * Field variable for somewhereOverTheRainbow MediaPlayer object
+     */
+    private MediaPlayer somewhereOverTheRainbow ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winning);
+        // start somewhereOverTheRainbow music
+        somewhereOverTheRainbow = MediaPlayer.create(WinningActivity.this, R.raw.somewhere_over_the_rainbow);
+        somewhereOverTheRainbow.setVolume(1.0f, 1.0f);
+        somewhereOverTheRainbow.setLooping(true);
+        somewhereOverTheRainbow.seekTo(2500);
+        somewhereOverTheRainbow.start();
 
         // to get passed in values from previous activity
         Intent previousActivity = getIntent();
@@ -90,5 +101,11 @@ public class WinningActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), AMazeActivity.class);
         startActivity(intent);
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        somewhereOverTheRainbow.release();
     }
 }
