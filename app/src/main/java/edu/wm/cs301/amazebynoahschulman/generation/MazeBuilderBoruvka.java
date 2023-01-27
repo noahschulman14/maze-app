@@ -5,7 +5,11 @@ import java.util.logging.Logger;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
+/**
+ * Class that generates a maze using Boruvka's Minimum Spanning Tree Algorithm.
+ * Uses the union find data structure to represent clusters.
+ * @author Noah Schulman
+ */
 public class MazeBuilderBoruvka extends MazeBuilder implements Runnable {
 	
 	

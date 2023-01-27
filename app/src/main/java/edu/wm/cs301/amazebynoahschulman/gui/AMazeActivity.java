@@ -25,6 +25,7 @@ import edu.wm.cs301.amazebynoahschulman.generation.Order;
  * AMazeActivity activity class - displays title page to select
  * maze size, maze builder, presence of rooms in maze, and whether to
  * play the same maze as last game or a new one.
+ * @author Noah Schulman
  */
 public class AMazeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     /**

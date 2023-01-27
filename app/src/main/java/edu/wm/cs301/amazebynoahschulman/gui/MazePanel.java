@@ -29,6 +29,7 @@ import edu.wm.cs301.amazebynoahschulman.generation.MazeContainer;
  * Currently, for P6, this custom view displays a custom bitmap image.
  * The image is square with a black rectangle on the bottom and a gray rectangle on top with a
  * red circle in the center of the square.
+ * @author Noah Schulman
  */
 public class MazePanel extends View implements P7PanelF22{
     /**

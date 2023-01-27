@@ -16,6 +16,7 @@ import edu.wm.cs301.amazebynoahschulman.R;
  * MazePanelPlayAnimation custom view
  * Only for P6, displays a bitmap image of a square with a black rectangle on bottom and
  * gray rectangle on top with a green maze wall and a yellow maze wall.
+ * @author Noah Schulman
  */
 public class MazePanelPlayAnimation extends View {
     /**

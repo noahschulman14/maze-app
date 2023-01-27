@@ -24,6 +24,7 @@ import edu.wm.cs301.amazebynoahschulman.R;
  * Screen that shows maze being played, status of the sensors,
  * ability to toggle map and change mpa size, ability to change animation speed,
  * remaining energy for the robot, and ability to play and pause the animation.
+ * @author Noah Schulman
  */
 public class PlayAnimationActivity extends AppCompatActivity {
     /**

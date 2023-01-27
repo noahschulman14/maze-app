@@ -28,6 +28,7 @@ import edu.wm.cs301.amazebynoahschulman.generation.Maze;
  * www.falstad.com, Copyright (C) 1998, all rights reserved
  * Paul Falstad granted permission to modify and use code for teaching purposes.
  * Refactored by Peter Kemper
+ * Edited by Noah Schulman
  *
  */
 public class Map {

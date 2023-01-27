@@ -15,6 +15,7 @@ import edu.wm.cs301.amazebynoahschulman.R;
  * LosingActivity activity class - losing screen which tells the user that the robot lost the game,
  * the robot's path length, reason for loss, shortest possible path length, and energy consumed.
  * Also allows user to restart game/return to title screen.
+ * @author Noah Schulman
  */
 public class LosingActivity extends AppCompatActivity {
     /**

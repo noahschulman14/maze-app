@@ -11,6 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import edu.wm.cs301.amazebynoahschulman.R;
 
+
+/**
+ * Winning activity class - screen which tells the user that the robot won the game,
+ * the robot's path length, shortest possible path length, and energy consumed.
+ * Also allows user to restart game/return to title screen.
+ * @author Noah Schulman
+ */
 public class WinningActivity extends AppCompatActivity {
     /**
      * TAG field variable for calls to Log.v

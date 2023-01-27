@@ -25,6 +25,7 @@ import edu.wm.cs301.amazebynoahschulman.generation.Order;
  * builds maze, displays progress of that on screen.
  * Allows user to select a driver and robot configuration while background maze generation
  * thread is running.
+ * @author Noah Schulman
  */
 public class GeneratingActivity extends AppCompatActivity  {
     /**

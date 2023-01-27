@@ -10,6 +10,7 @@ import edu.wm.cs301.amazebynoahschulman.generation.CardinalDirection;
  * Code copied from http://www.soupwizard.com/openrocket/code-coverage/eclemma-20121216/OpenRocket/src/net.sf.openrocket.gui.components.compass/CompassRose.java.html
  * adjusted for Maze setting by
  * @author Peter Kemper
+ * edited by Noah Schulman
  */
 public class CompassRose {
 	private static final long serialVersionUID = 1916497172430988388L;

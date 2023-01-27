@@ -5,6 +5,7 @@ import edu.wm.cs301.amazebynoahschulman.generation.Order;
 
 /**
  * MazeInfo class - stores information about the maze/maze game to be played/generated
+ * @author Noah Schulman
  */
 public class MazeInfo {
     /**

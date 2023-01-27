@@ -22,6 +22,7 @@ import edu.wm.cs301.amazebynoahschulman.R;
  * in P6 displays a placeholder custom view and shortcut button to winning screen.
  * Includes up, left, right, and jump movement control buttons, toggle switches to show map,
  * map solution, and map visible walls, also a slider to adjust map size.
+ * @author Noah Schulman
  */
 public class PlayManuallyActivity extends AppCompatActivity {
     /**
